@@ -22,18 +22,49 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.flywaydb:flyway-core'
-	compileOnly 'org.projectlombok:lombok'
+
+	// DEVELOPER TOOLS
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+	// WEB
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// SECURITY
+
+
+	// SQL
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.flywaydb:flyway-core'
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// OPS
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
-tasks.named('test') {
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+tasks.named('test', Test.class).configure {
+	jvmArgs "-Xshare:off"
 	useJUnitPlatform()
+}
+
+// This section causes useful test output to go to the terminal.
+test {
+	testLogging {
+		events "passed", "skipped", "failed" //, "standardOut", "standardError"
+
+		showExceptions true
+		exceptionFormat "full"
+		showCauses true
+		showStackTraces true
+
+		// Change to `true` for more verbose test output
+		showStandardStreams = false
+	}
 }
