@@ -69,3 +69,8 @@ test {
 	}
 }
 
+def profiles = 'dev,schema'
+
+bootRun {
+	environment('spring.profiles.active', profiles)
+}

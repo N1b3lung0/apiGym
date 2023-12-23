@@ -15,3 +15,4 @@ logging:
   level:
     ROOT: INFO
     n1b3lung0: DEBUG
+    web: DEBUG
