@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    properties:
+      javax:
+        persistence:
+          # SCHEMA GENERATION
+          schema-generation:
+            scripts:
+              action: create
+              create-target: schema.sql
+      hibernate:
+        format_sql: true

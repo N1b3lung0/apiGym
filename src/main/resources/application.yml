@@ -1,1 +1,23 @@
+spring:
+  # ANSI IN LOGS
+  output:
+    ansi:
+      enabled: ALWAYS
+  # PROFILES
+  profiles:
+    active: '@spring.profiles.active@'
+  # PERSISTENCE
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
 
+  # ACTUATOR
+  management:
+    endpoints:
+      web:
+        base-path: /management
+        exposure:
+          include: [ "health" ]

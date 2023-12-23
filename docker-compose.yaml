@@ -1,0 +1,52 @@
+version: '3.2'
+
+services:
+  app:
+    container_name: apigym-app
+    build: .
+    restart: on-failure:5
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATADOURCE_URL: 'jdbc:postgresql://db:5432/apigym'
+
+  db:
+    container_name: apigym-db
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+      - admin
+    volumes:
+      - apigym-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: 'apygym'
+      POSTGRES_USER: 'apygym'
+      POSTGRES_PASSWORD: 'Ap1Gym'
+
+  cloudbeaver:
+    container_name: apigym-cloudbeaver
+    image: dbeaver/cloudbeaver
+    restart: unless-stopped
+    ports:
+      - 9090:8978
+    networks:
+      - admin
+    volumes:
+      - apigym-cloudbeaver-data:/opt/cloudbeaver/workspace
+    depends_on:
+      - db
+
+volumes:
+  apigym-db-data:
+  apigym-cloudbeaver-data:
+
+networks:
+  backend:
+  admin:

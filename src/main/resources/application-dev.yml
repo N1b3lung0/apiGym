@@ -1,0 +1,17 @@
+spring:
+  # DATABASE
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/apigym
+    username: apigym
+    password: Ap1Gym
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+
+# LOG LEVELS
+logging:
+  level:
+    ROOT: INFO
+    n1b3lung0: DEBUG
