@@ -2,7 +2,13 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.1'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.flywaydb.flyway' version '10.4.1'
 }
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.flywaydb.flyway'
 
 group = 'n1b3lung0'
 version = '0.0.1-SNAPSHOT'
@@ -20,6 +26,7 @@ configurations {
 repositories {
 	mavenCentral()
 }
+def testContainersVersion = '1.19.3'
 
 dependencies {
 
@@ -31,7 +38,6 @@ dependencies {
 
 	// WEB
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	// SECURITY
 
@@ -43,6 +49,19 @@ dependencies {
 
 	// OPS
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// UTILS
+	implementation 'org.apache.commons:commons-lang3:3.14.0'
+
+	// TEST
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.testcontainers:testcontainers:' + testContainersVersion
+	testImplementation 'org.testcontainers:junit-jupiter:1.19.3'
+	testImplementation 'org.testcontainers:postgresql:1.19.3'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
 }
 
 tasks.named('bootBuildImage') {
@@ -54,8 +73,16 @@ tasks.named('test', Test.class).configure {
 	useJUnitPlatform()
 }
 
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/apigym'
+	user = 'apigym'
+	password = 'apigym'
+}
+
+def testProfiles = 'dev,schema,test'
 // This section causes useful test output to go to the terminal.
 test {
+	environment('spring.profiles.active', testProfiles)
 	testLogging {
 		events "passed", "skipped", "failed" //, "standardOut", "standardError"
 
@@ -69,8 +96,8 @@ test {
 	}
 }
 
-def profiles = 'dev,schema'
+def devProfiles = 'dev,schema'
 
 bootRun {
-	environment('spring.profiles.active', profiles)
+	environment('spring.profiles.active', devProfiles)
 }

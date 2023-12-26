@@ -17,7 +17,7 @@ cleanup:
 	@docker rmi $$(docker images -f "dangling=true" -q)
 
 test:
-	@./gradlew clean testClasses
+	@./gradlew clean test
 
 start-db:
 	@docker-compose up -d db cloudbeaver

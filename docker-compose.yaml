@@ -26,9 +26,9 @@ services:
     volumes:
       - apigym-db-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: 'apygym'
-      POSTGRES_USER: 'apygym'
-      POSTGRES_PASSWORD: 'Ap1Gym'
+      POSTGRES_DB: apigym
+      POSTGRES_USER: apigym
+      POSTGRES_PASSWORD: apigym
 
   cloudbeaver:
     container_name: apigym-cloudbeaver

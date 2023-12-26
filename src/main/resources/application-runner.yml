@@ -2,7 +2,7 @@ spring:
   # DATABASE
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/apigym
+    url: jdbc:postgresql://postgres:5432/apigym
     username: apigym
     password: apigym
   jpa:
@@ -13,6 +13,4 @@ spring:
 # LOG LEVELS
 logging:
   level:
-    ROOT: INFO
-    n1b3lung0: DEBUG
-    web: DEBUG
+    ROOT: WARN
