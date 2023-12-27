@@ -22,4 +22,16 @@ public final class Exercise {
 
     @Column(name = "name", nullable = false, unique = true)
     private final String name;
+
+    @Column(name = "description")
+    private final String description;
+
+    @Column(name = "image")
+    private final String image;
+
+    @Column(name = "video")
+    private final String video;
+
+    @Column(name = "rest_time")
+    private final Integer restTime;
 }

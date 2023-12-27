@@ -1,5 +1,7 @@
 ext {
+    apacheCommonsLang3Version = "3.14.0"
     testContainersVersion = "1.19.3"
+    junitJupiterApiVersion = "5.10.1"
     testProfiles = "schema,test"
     devProfiles = "dev,schema"
 }
