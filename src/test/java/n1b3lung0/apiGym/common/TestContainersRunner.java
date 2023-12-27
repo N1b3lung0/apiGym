@@ -31,7 +31,7 @@ public final class TestContainersRunner {
         cloudBeaver.start();
 
         log.info("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        log.info("PostgreSQL test database can be accessed via CloudBeaver in http://localhost:" + cloudBeaver.getMappedPort(8080) + " with HOST " + DB_HOST_NAME + ", DATABASE " + postgres.getDatabaseName() + ", USERNAME " + postgres.getUsername() + " and PASSWORD " + postgres.getPassword());
+        log.info("PostgreSQL test database can be accessed via CloudBeaver in http://localhost:" + cloudBeaver.getMappedPort(8978) + " with HOST " + DB_HOST_NAME + ", DATABASE " + postgres.getDatabaseName() + ", USERNAME " + postgres.getUsername() + " and PASSWORD " + postgres.getPassword());
         log.info("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         System.setProperty("spring.profiles.active", AppProfile.TEST);

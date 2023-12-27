@@ -5,10 +5,9 @@ plugins {
 	id 'org.flywaydb.flyway' version '10.4.1'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'org.flywaydb.flyway'
+//apply plugin: 'org.flywaydb.flyway'
+
+apply from: "$rootDir/constants.gradle"
 
 group = 'n1b3lung0'
 version = '0.0.1-SNAPSHOT'
@@ -26,7 +25,6 @@ configurations {
 repositories {
 	mavenCentral()
 }
-def testContainersVersion = '1.19.3'
 
 dependencies {
 
@@ -55,22 +53,13 @@ dependencies {
 
 	// TEST
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.testcontainers:testcontainers:' + testContainersVersion
-	testImplementation 'org.testcontainers:junit-jupiter:1.19.3'
-	testImplementation 'org.testcontainers:postgresql:1.19.3'
+	testImplementation "org.testcontainers:testcontainers:${testContainersVersion}"
+	testImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
+	testImplementation "org.testcontainers:postgresql:${testContainersVersion}"
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
 
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
-}
-
-tasks.named('bootBuildImage') {
-	builder = 'paketobuildpacks/builder-jammy-base:latest'
-}
-
-tasks.named('test', Test.class).configure {
-	jvmArgs "-Xshare:off"
-	useJUnitPlatform()
 }
 
 flyway {
@@ -79,9 +68,10 @@ flyway {
 	password = 'apigym'
 }
 
-def testProfiles = 'dev,schema,test'
+
 // This section causes useful test output to go to the terminal.
 test {
+	useJUnitPlatform()
 	environment('spring.profiles.active', testProfiles)
 	testLogging {
 		events "passed", "skipped", "failed" //, "standardOut", "standardError"
@@ -95,8 +85,6 @@ test {
 		showStandardStreams = false
 	}
 }
-
-def devProfiles = 'dev,schema'
 
 bootRun {
 	environment('spring.profiles.active', devProfiles)

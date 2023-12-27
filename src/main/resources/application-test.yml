@@ -3,9 +3,16 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  # DATABASE
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
 
 # LOG LEVELS
 logging:
   level:
     ROOT: INFO
-    es.nextdigital: DEBUG
+    n1b3lung0.apiGym: DEBUG
