@@ -40,6 +40,7 @@ dependencies {
 
 	// SQL
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+	implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
 	implementation "org.flywaydb:flyway-core"
 	runtimeOnly "org.postgresql:postgresql"
 
@@ -55,6 +56,9 @@ dependencies {
 	testImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
 	testImplementation "org.testcontainers:postgresql:${testContainersVersion}"
 	testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}"
+	testImplementation "net.datafaker:datafaker:2.0.2"
+
+
 
 	testAnnotationProcessor "org.projectlombok:lombok"
 	testCompileOnly "org.projectlombok:lombok"

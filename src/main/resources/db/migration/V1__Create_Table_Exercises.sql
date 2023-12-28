@@ -6,5 +6,6 @@ create table exercises (
     image varchar(255),
     name varchar(255) not null unique,
     video varchar(255),
+    deleted boolean,
     primary key (id)
 );

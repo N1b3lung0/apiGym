@@ -5,4 +5,5 @@ import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles(AppProfile.TEST)
 public abstract class BaseUnitTest {
+
 }

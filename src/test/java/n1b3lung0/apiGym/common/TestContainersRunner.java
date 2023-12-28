@@ -15,6 +15,7 @@ public final class TestContainersRunner {
     private static final String POSTGRES_IMAGE = "postgres:15-alpine";
     private static final String DBEAVER_IMAGE = "dbeaver/cloudbeaver";
     private static final String DB_HOST_NAME = "db";
+    private static final int CLOUDBEAVER_PORT = 8978;
 
     public static void runContainers() {
 
@@ -26,12 +27,12 @@ public final class TestContainersRunner {
         postgres.start();
 
         GenericContainer<?> cloudBeaver = new GenericContainer<>(DBEAVER_IMAGE)
-                .withExposedPorts(8978)
+                .withExposedPorts(CLOUDBEAVER_PORT)
                 .withNetwork(dbNetwork);
         cloudBeaver.start();
 
         log.info("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        log.info("PostgreSQL test database can be accessed via CloudBeaver in http://localhost:" + cloudBeaver.getMappedPort(8978) + " with HOST " + DB_HOST_NAME + ", DATABASE " + postgres.getDatabaseName() + ", USERNAME " + postgres.getUsername() + " and PASSWORD " + postgres.getPassword());
+        log.info("PostgreSQL test database can be accessed via CloudBeaver in http://localhost:" + cloudBeaver.getMappedPort(CLOUDBEAVER_PORT) + " with HOST " + DB_HOST_NAME + ", DATABASE " + postgres.getDatabaseName() + ", USERNAME " + postgres.getUsername() + " and PASSWORD " + postgres.getPassword());
         log.info("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         System.setProperty("spring.profiles.active", AppProfile.TEST);
