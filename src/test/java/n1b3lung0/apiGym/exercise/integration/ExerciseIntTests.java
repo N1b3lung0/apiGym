@@ -4,6 +4,7 @@ import n1b3lung0.apiGym.common.BaseIntegrationTest;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseResponse;
+import n1b3lung0.apiGym.exercise.application.find.exception.ExerciseNotFound;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
@@ -14,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.HttpStatus;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class ExerciseIntTests extends BaseIntegrationTest {
 
@@ -57,5 +60,14 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
         verify(repository, never()).findByIdAndDeletedFalse(UUID.randomUUID());
         assertEquals(ExceptionConstants.ID_REQUIRED, e.getMessage());
+    }
+
+    @Test
+    void shouldFailFindAnExerciseByIdIfNotFound() {
+        var id = UUID.randomUUID();
+        when(repository.findByIdAndDeletedFalse(id)).thenReturn(Optional.empty());
+
+        var e = assertThrows(ExerciseNotFound.class, () -> finder.findById(id.toString()));
+        assertEquals(String.format(ExceptionConstants.EXERCISE_NOT_FOUND, id), e.getMessage());
     }
 }
