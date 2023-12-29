@@ -1,7 +1,6 @@
 package n1b3lung0.apiGym.mother.exercise;
 
 import n1b3lung0.apiGym.exercise.domain.Exercise;
-import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.mother.common.MotherCreator;
 
 import java.util.UUID;
@@ -14,8 +13,7 @@ public final class ExerciseMother {
             String description,
             String image,
             String video,
-            int restTime,
-            boolean deleted
+            int restTime
     ) {
         return Exercise.builder()
                 .id(id)
@@ -24,7 +22,7 @@ public final class ExerciseMother {
                 .image(image)
                 .video(video)
                 .restTime(restTime)
-                .deleted(deleted);
+                .deleted(Boolean.FALSE);
     }
     public static Exercise.ExerciseBuilder random() {
         return create(
@@ -33,8 +31,7 @@ public final class ExerciseMother {
                 MotherCreator.random().lorem().characters(10, 255),
                 MotherCreator.random().lorem().characters(),
                 MotherCreator.random().lorem().characters(),
-                MotherCreator.random().number().randomDigit(),
-                Boolean.FALSE
+                MotherCreator.random().number().randomDigit()
         );
     }
 }

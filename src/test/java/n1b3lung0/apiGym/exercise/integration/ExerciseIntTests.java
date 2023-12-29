@@ -1,9 +1,11 @@
 package n1b3lung0.apiGym.exercise.integration;
 
 import n1b3lung0.apiGym.common.BaseIntegrationTest;
+import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseResponse;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
+import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
 import n1b3lung0.apiGym.mother.exercise.ExerciseMother;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.HttpStatus;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 class ExerciseIntTests extends BaseIntegrationTest {
@@ -22,6 +28,9 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
     @SpyBean
     private ExerciseFinder finder;
+
+    @SpyBean
+    private ExerciseRepository repository;
 
     private Exercise exercise;
 
@@ -33,7 +42,6 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
     @Test
     void shouldFindAnExerciseById() {
-
         var id = String.valueOf(exercise.getId());
         var expected = ExerciseResponse.fromExercise(exercise);
         var response = controller.findById(id);
@@ -41,5 +49,13 @@ class ExerciseIntTests extends BaseIntegrationTest {
         verify(finder).findById(id);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expected, response.getBody());
+    }
+
+    @Test
+    void shouldFailFindAnExerciseByIdIfNull() {
+        var e = assertThrows(IllegalArgumentException.class, () -> finder.findById(null));
+
+        verify(repository, never()).findByIdAndDeletedFalse(UUID.randomUUID());
+        assertEquals(ExceptionConstants.ID_REQUIRED, e.getMessage());
     }
 }
