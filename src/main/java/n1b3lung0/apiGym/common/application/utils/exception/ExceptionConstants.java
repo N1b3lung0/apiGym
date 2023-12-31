@@ -13,4 +13,5 @@ public final class ExceptionConstants {
 
     // EXERCISE
     public static final String EXERCISE_NOT_FOUND = "An exercise with ID '%s' could not be found";
+    public static final String EXERCISE_NAME_LENGTH_NOT_VALID = "Name exercise must not be more than {max} characters long";
 }

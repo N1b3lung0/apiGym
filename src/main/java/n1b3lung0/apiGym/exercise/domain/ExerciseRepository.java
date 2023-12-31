@@ -6,4 +6,6 @@ import java.util.UUID;
 public interface ExerciseRepository {
 
     Optional<Exercise> findByIdAndDeletedFalse(UUID id);
+
+    Exercise save(Exercise exercise);
 }
