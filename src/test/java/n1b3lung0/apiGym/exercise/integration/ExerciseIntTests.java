@@ -90,11 +90,15 @@ class ExerciseIntTests extends BaseIntegrationTest {
         var request = ExerciseCreateRequest.fromExercise(exercise);
         var expected = creator.create(request);
         var response = controller.create(request);
-        var location = UriComponentsBuilder.fromPath("/api/exercises/{id}").buildAndExpand(expected.getId()).toUri();
+        var responseId = Objects.requireNonNull(response.getHeaders().getLocation())
+                .getPath().replace("/api/exercises/", "");
+        var location = UriComponentsBuilder.fromPath("/api/exercises/{id}")
+                .buildAndExpand(UUIDUtils.fromString(responseId)).toUri();
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNull(response.getBody());
-        //assertEquals(location, response.getHeaders().getLocation());
+        assertTrue(StringUtils.isNotBlank(responseId));
+        assertEquals(location, response.getHeaders().getLocation());
         assertNotNull(em.find(Exercise.class, expected.getId()));
     }
 
