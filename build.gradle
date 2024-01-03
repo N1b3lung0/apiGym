@@ -25,7 +25,6 @@ repositories {
 }
 
 dependencies {
-
 	// DEVELOPER TOOLS
 	developmentOnly "org.springframework.boot:spring-boot-devtools"
 	annotationProcessor "org.projectlombok:lombok"
@@ -36,7 +35,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	// SECURITY
-
 
 	// SQL
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
@@ -50,6 +48,8 @@ dependencies {
 	// UTILS
 	implementation "org.apache.commons:commons-lang3:${apacheCommonsLang3Version}"
 	implementation "commons-validator:commons-validator:${apacheCommonsValidatorVersion}"
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
 
 
 	// TEST
@@ -59,8 +59,6 @@ dependencies {
 	testImplementation "org.testcontainers:postgresql:${testContainersVersion}"
 	testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}"
 	testImplementation "net.datafaker:datafaker:2.0.2"
-
-
 
 	testAnnotationProcessor "org.projectlombok:lombok"
 	testCompileOnly "org.projectlombok:lombok"
