@@ -5,12 +5,17 @@ import lombok.RequiredArgsConstructor;
 import n1b3lung0.apiGym.common.rest.BaseRestController;
 import n1b3lung0.apiGym.exercise.application.create.ExerciseCreator;
 import n1b3lung0.apiGym.exercise.application.create.dto.ExerciseCreateRequest;
+import n1b3lung0.apiGym.exercise.application.delete.ExerciseDeleter;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseResponse;
+import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdater;
+import n1b3lung0.apiGym.exercise.application.update.dto.ExerciseUpdateRequest;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +32,8 @@ public class ExerciseController extends BaseRestController {
 
     private final ExerciseFinder finder;
     private final ExerciseCreator creator;
+    private final ExerciseUpdater updater;
+    private final ExerciseDeleter deleter;
 
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseResponse> findById(@PathVariable String id) {
@@ -39,4 +46,16 @@ public class ExerciseController extends BaseRestController {
         URI location = UriComponentsBuilder.fromPath("/api/exercises/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ExerciseResponse> update(@Valid @RequestBody ExerciseUpdateRequest request) {
+        return ResponseEntity.ok(ExerciseResponse.fromExercise(updater.updateFields(request)));
+    }
+
+    @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        deleter.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

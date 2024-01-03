@@ -1,5 +1,6 @@
 ext {
     apacheCommonsLang3Version = "3.14.0"
+    apacheCommonsValidatorVersion = "1.8.0"
     hibernateValidatorVersion = "8.0.1.Final"
     hibernateTypesVersion = "2.20.0"
     testContainersVersion = "1.19.3"

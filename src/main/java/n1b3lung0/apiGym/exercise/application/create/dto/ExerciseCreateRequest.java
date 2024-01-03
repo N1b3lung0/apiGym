@@ -9,8 +9,8 @@ import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ExerciseCreateRequest {
 
     @NotBlank
@@ -23,14 +23,14 @@ public class ExerciseCreateRequest {
 
     private String video;
 
-    private int restTime;
+    private String restTime;
 
     public Exercise toExercise(
             String name,
             String description,
             String image,
             String video,
-            int restTime
+            String restTime
     ) {
         return Exercise.create(
                 name,

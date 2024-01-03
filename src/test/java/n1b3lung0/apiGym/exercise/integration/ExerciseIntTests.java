@@ -5,9 +5,12 @@ import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.common.application.utils.uuid.UUIDUtils;
 import n1b3lung0.apiGym.exercise.application.create.ExerciseCreator;
 import n1b3lung0.apiGym.exercise.application.create.dto.ExerciseCreateRequest;
+import n1b3lung0.apiGym.exercise.application.delete.ExerciseDeleter;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseResponse;
 import n1b3lung0.apiGym.exercise.application.find.exception.ExerciseNotFound;
+import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdater;
+import n1b3lung0.apiGym.exercise.application.update.dto.ExerciseUpdateRequest;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
@@ -45,6 +48,12 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
     @SpyBean
     private ExerciseCreator creator;
+
+    @SpyBean
+    private ExerciseUpdater updater;
+
+    @SpyBean
+    private ExerciseDeleter deleter;
 
     @SpyBean
     private ExerciseRepository repository;
@@ -104,11 +113,34 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
     @Test
     void shouldUpdateAnExercise() {
-        assertTrue(Boolean.TRUE);
+        var updatedExercise = exercise.withDescription("Description updated");
+        var request = new ExerciseUpdateRequest(
+                String.valueOf(updatedExercise.getId()),
+                null,
+                updatedExercise.getDescription(),
+                null,
+                null,
+                null
+        );
+        var expected = ExerciseResponse.fromExercise(updatedExercise);
+        var response = controller.update(request);
+
+        verify(updater).updateFields(request);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expected, response.getBody());
+        var actual = em.find(Exercise.class, updatedExercise.getId());
+        assertEquals(updatedExercise, actual);
     }
 
     @Test
     void shouldDeleteAnExercise() {
-        assertTrue(Boolean.TRUE);
+        var id = String.valueOf(exercise.getId());
+        var response = controller.delete(id);
+
+        verify(deleter).delete(id);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        assertNull(response.getBody());
+        var actual = em.find(Exercise.class, exercise.getId());
+        assertTrue(actual.isDeleted());
     }
 }

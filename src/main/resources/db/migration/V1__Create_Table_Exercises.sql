@@ -1,6 +1,6 @@
 create EXTENSION if not exists "uuid-ossp";
 create table exercises (
-    rest_time integer,
+    rest_time varchar(255),
     id uuid not null default uuid_generate_v4(),
     description varchar(255),
     image varchar(255),

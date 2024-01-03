@@ -7,5 +7,7 @@ public interface ExerciseRepository {
 
     Optional<Exercise> findByIdAndDeletedFalse(UUID id);
 
+    Optional<Exercise> findByName(String name);
+
     Exercise save(Exercise exercise);
 }

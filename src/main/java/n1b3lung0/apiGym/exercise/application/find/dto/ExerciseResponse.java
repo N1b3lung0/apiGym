@@ -17,7 +17,7 @@ public class ExerciseResponse {
     private String description;
     private String image;
     private String video;
-    private int restTime;
+    private String restTime;
 
     public static ExerciseResponse fromExercise(Exercise exercise) {
         return exercise != null ? new ExerciseResponse(

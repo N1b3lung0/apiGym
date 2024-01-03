@@ -13,7 +13,7 @@ public final class ExerciseMother {
             String description,
             String image,
             String video,
-            int restTime
+            String restTime
     ) {
         return Exercise.builder()
                 .id(id)
@@ -31,7 +31,7 @@ public final class ExerciseMother {
                 MotherCreator.random().lorem().characters(10, 255),
                 MotherCreator.random().lorem().characters(),
                 MotherCreator.random().lorem().characters(),
-                MotherCreator.random().number().randomDigit()
+                String.valueOf(MotherCreator.random().number().randomDigit())
         );
     }
 }
