@@ -48,8 +48,8 @@ dependencies {
 	// UTILS
 	implementation "org.apache.commons:commons-lang3:${apacheCommonsLang3Version}"
 	implementation "commons-validator:commons-validator:${apacheCommonsValidatorVersion}"
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocWebmvcVersion}"
+	implementation "org.springdoc:springdoc-openapi-ui:${springdocVersion}"
 
 
 	// TEST
@@ -58,7 +58,7 @@ dependencies {
 	testImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
 	testImplementation "org.testcontainers:postgresql:${testContainersVersion}"
 	testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}"
-	testImplementation "net.datafaker:datafaker:2.0.2"
+	testImplementation "net.datafaker:datafaker:${datafakerVersion}"
 
 	testAnnotationProcessor "org.projectlombok:lombok"
 	testCompileOnly "org.projectlombok:lombok"

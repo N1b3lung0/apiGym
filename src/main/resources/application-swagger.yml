@@ -1,0 +1,12 @@
+# DOCS:
+springdoc:
+  version: 1.7.0
+  swagger-ui:
+    path: /api/spec
+    groups-order: DESC
+    operationsSorter: method
+
+n1b3lung0:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: https://n1b3lung0-api.com

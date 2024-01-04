@@ -1,8 +1,14 @@
 package n1b3lung0.apiGym.exercise.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import n1b3lung0.apiGym.common.rest.BaseRestController;
+import n1b3lung0.apiGym.common.rest.swagger.CreatedRes;
+import n1b3lung0.apiGym.common.rest.swagger.NoContentRes;
+import n1b3lung0.apiGym.common.rest.swagger.NotFoundRes;
+import n1b3lung0.apiGym.common.rest.swagger.OkRes;
+import n1b3lung0.apiGym.common.rest.swagger.SecurityRes;
 import n1b3lung0.apiGym.exercise.application.create.ExerciseCreator;
 import n1b3lung0.apiGym.exercise.application.create.dto.ExerciseCreateRequest;
 import n1b3lung0.apiGym.exercise.application.delete.ExerciseDeleter;
@@ -28,6 +34,7 @@ import java.net.URI;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/exercises")
+@Tag(name = "Exercises", description = "Endpoints to perform operations with exercises")
 public class ExerciseController extends BaseRestController {
 
     private final ExerciseFinder finder;
@@ -35,11 +42,13 @@ public class ExerciseController extends BaseRestController {
     private final ExerciseUpdater updater;
     private final ExerciseDeleter deleter;
 
+    @OkRes @NotFoundRes @SecurityRes
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseResponse> findById(@PathVariable String id) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findById(id)));
     }
 
+    @CreatedRes @SecurityRes
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> create(@RequestBody @Valid ExerciseCreateRequest request) {
         Exercise saved = creator.create(request);
@@ -47,15 +56,16 @@ public class ExerciseController extends BaseRestController {
         return ResponseEntity.created(location).build();
     }
 
+    @OkRes @NotFoundRes @SecurityRes
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseResponse> update(@Valid @RequestBody ExerciseUpdateRequest request) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(updater.updateFields(request)));
     }
 
+    @NoContentRes @NotFoundRes @SecurityRes
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
         deleter.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

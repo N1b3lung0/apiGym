@@ -5,6 +5,9 @@ ext {
     hibernateTypesVersion = "2.20.0"
     testContainersVersion = "1.19.3"
     junitJupiterApiVersion = "5.10.1"
-    testProfiles = "schema,test"
-    devProfiles = "dev,schema"
+    springdocVersion = "1.7.0"
+    springdocWebmvcVersion = "2.3.0"
+    datafakerVersion = "2.0.2"
+    testProfiles = "test"
+    devProfiles = "dev,schema,swagger"
 }
