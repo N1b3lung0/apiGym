@@ -3,6 +3,7 @@ package n1b3lung0.apiGym.exercise.rest;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import n1b3lung0.apiGym.common.application.dto.PageResponse;
 import n1b3lung0.apiGym.common.rest.BaseRestController;
 import n1b3lung0.apiGym.common.rest.swagger.CreatedRes;
 import n1b3lung0.apiGym.common.rest.swagger.NoContentRes;
@@ -13,6 +14,7 @@ import n1b3lung0.apiGym.exercise.application.create.ExerciseCreator;
 import n1b3lung0.apiGym.exercise.application.create.dto.ExerciseCreateRequest;
 import n1b3lung0.apiGym.exercise.application.delete.ExerciseDeleter;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
+import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseFindRequest;
 import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseResponse;
 import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdater;
 import n1b3lung0.apiGym.exercise.application.update.dto.ExerciseUpdateRequest;
@@ -46,6 +48,11 @@ public class ExerciseController extends BaseRestController {
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ExerciseResponse> findById(@PathVariable String id) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findById(id)));
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PageResponse<ExerciseResponse>> findByCriteria(@Valid ExerciseFindRequest request) {
+        return ResponseEntity.ok(finder.find(request));
     }
 
     @CreatedRes @SecurityRes
