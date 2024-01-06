@@ -33,7 +33,9 @@ public class ExerciseFinder {
 
         return new PageResponse<>(
                 page,
-                page.getContent().stream().map(ExerciseResponse::fromExercise).collect(Collectors.toList())
+                page.getContent().stream()
+                        .map(ExerciseResponse::fromExercise)
+                        .collect(Collectors.toList())
         );
     }
 }

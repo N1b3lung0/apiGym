@@ -1,6 +1,7 @@
 package n1b3lung0.apiGym.exercise.domain;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.With;
+import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -50,6 +52,9 @@ public final class Exercise implements Serializable {
     @Column(name = "deleted")
     private final boolean deleted;
 
+    @Embedded
+    private final AuditFields auditFields;
+
     public static Exercise create(
             String name,
             String description,
@@ -64,7 +69,8 @@ public final class Exercise implements Serializable {
                 image,
                 video,
                 restTime,
-                Boolean.FALSE
+                Boolean.FALSE,
+                new AuditFields()
         );
     }
 }
