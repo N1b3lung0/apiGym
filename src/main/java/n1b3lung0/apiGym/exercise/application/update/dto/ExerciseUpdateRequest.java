@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

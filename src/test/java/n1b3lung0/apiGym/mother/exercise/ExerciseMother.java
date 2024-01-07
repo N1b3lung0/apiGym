@@ -1,5 +1,6 @@
 package n1b3lung0.apiGym.mother.exercise;
 
+import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.mother.common.MotherCreator;
 
@@ -13,7 +14,8 @@ public final class ExerciseMother {
             String description,
             String image,
             String video,
-            String restTime
+            String restTime,
+            AuditFields auditFields
     ) {
         return Exercise.builder()
                 .id(id)
@@ -22,7 +24,8 @@ public final class ExerciseMother {
                 .image(image)
                 .video(video)
                 .restTime(restTime)
-                .deleted(Boolean.FALSE);
+                .deleted(Boolean.FALSE)
+                .auditFields(auditFields);
     }
     public static Exercise.ExerciseBuilder random() {
         return create(
@@ -31,7 +34,8 @@ public final class ExerciseMother {
                 MotherCreator.random().lorem().characters(10, 255),
                 MotherCreator.random().lorem().characters(),
                 MotherCreator.random().lorem().characters(),
-                String.valueOf(MotherCreator.random().number().randomDigit())
+                String.valueOf(MotherCreator.random().number().randomDigit()),
+                new AuditFields()
         );
     }
 }
