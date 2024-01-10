@@ -30,10 +30,10 @@ public final class ExerciseMother {
     public static Exercise.ExerciseBuilder random() {
         return create(
                 UUID.randomUUID(),
+                MotherCreator.random().name().name(),
                 MotherCreator.random().lorem().characters(10, 255),
-                MotherCreator.random().lorem().characters(10, 255),
-                MotherCreator.random().lorem().characters(),
-                MotherCreator.random().lorem().characters(),
+                MotherCreator.random().internet().image(),
+                MotherCreator.random().internet().url(),
                 String.valueOf(MotherCreator.random().number().randomDigit()),
                 new AuditFields()
         );

@@ -20,7 +20,7 @@ public class ExerciseDeleter {
     @Transactional
     public void delete(String id) {
         Exercise exercise = finder.findById(id);
-        Exercise deleted = exercise.withDeleted(Boolean.TRUE);
+        Exercise deleted = exercise.delete();
         repository.save(deleted);
         log.debug(String.format(LogConstants.EXERCISE_DELETED, deleted));
     }

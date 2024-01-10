@@ -32,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -66,51 +67,79 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
     @Test
     void shouldFindAnExerciseById() {
+
         var id = String.valueOf(exercise.getId());
         var expected = ExerciseResponse.fromExercise(exercise);
-        var response = controller.findById(id);
+
+        var actual = controller.findById(id);
 
         verify(finder).findById(id);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expected, response.getBody());
+        assertEquals(HttpStatus.OK, actual.getStatusCode());
+        assertEquals(expected, actual.getBody());
     }
 
     @Test
     void shouldFailFindAnExerciseByIdIfNull() {
-        var e = assertThrows(IllegalArgumentException.class, () -> finder.findById(null));
 
-        verify(repository, never()).findByIdAndDeletedFalse(UUID.randomUUID());
-        assertEquals(ExceptionConstants.ID_REQUIRED, e.getMessage());
+        var expected = ExceptionConstants.ID_REQUIRED;
+
+        var actual = assertThrows(IllegalArgumentException.class, () -> finder.findById(null));
+
+        verify(repository, never()).findByIdAndDeletedFalse(any());
+        assertEquals(expected, actual.getMessage());
     }
 
     @Test
     void shouldFailFindAnExerciseByIdIfNotFound() {
+
         var id = UUID.randomUUID();
+        var expected = String.format(ExceptionConstants.EXERCISE_NOT_FOUND, id);
         when(repository.findByIdAndDeletedFalse(id)).thenReturn(Optional.empty());
 
-        var e = assertThrows(ExerciseNotFound.class, () -> finder.findById(id.toString()));
-        assertEquals(String.format(ExceptionConstants.EXERCISE_NOT_FOUND, id), e.getMessage());
+        var actual = assertThrows(ExerciseNotFound.class, () -> finder.findById(String.valueOf(id)));
+        assertEquals(expected, actual.getMessage());
     }
 
     @Test
     void shouldCreateAValidExercise() {
-        var request = ExerciseCreateRequest.fromExercise(exercise);
-        var expected = creator.create(request);
-        var response = controller.create(request);
-        var responseId = Objects.requireNonNull(response.getHeaders().getLocation())
-                .getPath().replace("/api/exercises/", "");
-        var location = UriComponentsBuilder.fromPath("/api/exercises/{id}")
-                .buildAndExpand(UUIDUtils.fromString(responseId)).toUri();
 
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertNull(response.getBody());
-        assertTrue(StringUtils.isNotBlank(responseId));
-        assertEquals(location, response.getHeaders().getLocation());
-        assertNotNull(em.find(Exercise.class, expected.getId()));
+        var expected = ExerciseMother.random().id(null).build();
+        var request = ExerciseCreateRequest.fromExercise(expected);
+
+        var actual = controller.create(request);
+
+        assertEquals(HttpStatus.CREATED, actual.getStatusCode());
+        assertNull(actual.getBody());
+        var actualLocation = actual.getHeaders().getLocation();
+        var actualId = Objects.requireNonNull(actualLocation)
+                .getPath().replace("/api/exercises/", "");
+        assertTrue(StringUtils.isNotBlank(actualId));
+        var expectedLocation = UriComponentsBuilder.fromPath("/api/exercises/{id}")
+                .buildAndExpand(UUIDUtils.fromString(actualId)).toUri();
+        assertEquals(expectedLocation, actualLocation);
+        var actualUUID = UUID.fromString(actualId);
+        var actualExercise = em.find(Exercise.class, actualUUID);
+        assertEquals(expected.withId(actualUUID), actualExercise);
+    }
+
+    @Test
+    void shouldFailIfNameAlreadyExists() {
+
+        var newExercise = ExerciseMother.random().id(null).name(exercise.getName()).build();
+        var request = ExerciseCreateRequest.fromExercise(newExercise);
+        var expected = String.format("Exercise with name %s already exists", newExercise.getName());
+
+        var actual = assertThrows(RuntimeException.class, () -> controller.create(request));
+
+        assertEquals(expected, actual.getMessage());
+        var actualExercises = em.createQuery(String.format("select e from Exercise e where name = '%s'", newExercise.getName())).getResultList();
+        assertEquals(1, actualExercises.size());
+        assertEquals(exercise, actualExercises.get(0));
     }
 
     @Test
     void shouldUpdateAnExercise() {
+
         var updatedExercise = exercise.withDescription("Description updated");
         var request = new ExerciseUpdateRequest(
                 String.valueOf(updatedExercise.getId()),
@@ -126,12 +155,13 @@ class ExerciseIntTests extends BaseIntegrationTest {
         verify(updater).updateFields(request);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expected, response.getBody());
-        var actual = em.find(Exercise.class, updatedExercise.getId());
+        var actual = em.find(Exercise.class, exercise.getId());
         assertEquals(updatedExercise, actual);
     }
 
     @Test
     void shouldDeleteAnExercise() {
+
         var id = String.valueOf(exercise.getId());
         var response = controller.delete(id);
 

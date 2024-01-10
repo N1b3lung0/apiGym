@@ -6,15 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.With;
+import lombok.*;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +22,7 @@ public final class Exercise implements Serializable {
     @Serial
     private static final long serialVersionUID = -3850311608773014615L;
 
+    @With
     @Id @GeneratedValue
     private final UUID id;
 
@@ -48,9 +46,13 @@ public final class Exercise implements Serializable {
     @Column(name = "rest_time")
     private final String restTime;
 
-    @With
+    @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
     private final boolean deleted;
+
+//    @With(AccessLevel.PRIVATE)
+//    @Column(name = "deleted_at")
+//    private final ZonedDateTime deletedAt;
 
     @Embedded
     private final AuditFields auditFields;
@@ -72,5 +74,9 @@ public final class Exercise implements Serializable {
                 Boolean.FALSE,
                 new AuditFields()
         );
+    }
+
+    public Exercise delete() {
+        return withDeleted(Boolean.TRUE);
     }
 }

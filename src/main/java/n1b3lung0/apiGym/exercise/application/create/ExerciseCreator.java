@@ -18,8 +18,14 @@ public class ExerciseCreator {
 
     @Transactional
     public Exercise create(ExerciseCreateRequest request) {
+
+        String name = request.getName();
+        if(repository.findByName(name).isPresent()) {
+            throw new RuntimeException(String.format("Exercise with name %s already exists", name));
+        }
+
         Exercise exercise = request.toExercise(
-                request.getName(),
+                name,
                 request.getDescription(),
                 request.getImage(),
                 request.getVideo(),
