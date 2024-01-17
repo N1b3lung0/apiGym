@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.common.application.utils.log.LogConstants;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
-import n1b3lung0.apiGym.exercise.application.update.dto.ExerciseUpdateRequest;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseChange;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;

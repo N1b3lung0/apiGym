@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public final class AuditFields implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 7124840631393871366L;
+    private static final long serialVersionUID = -1L;
 
     @EqualsAndHashCode.Exclude
     @Column(name = "created_at")

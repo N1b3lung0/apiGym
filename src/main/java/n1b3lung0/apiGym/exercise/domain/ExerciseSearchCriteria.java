@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class ExerciseSearchCriteria extends Criteria implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 7842844170926653636L;
+    private static final long serialVersionUID = -1L;
 
     private final String query;
 

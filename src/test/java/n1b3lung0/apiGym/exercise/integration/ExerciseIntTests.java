@@ -4,13 +4,13 @@ import n1b3lung0.apiGym.common.BaseIntegrationTest;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.common.application.utils.uuid.UUIDUtils;
 import n1b3lung0.apiGym.exercise.application.create.ExerciseCreator;
-import n1b3lung0.apiGym.exercise.application.create.dto.ExerciseCreateRequest;
+import n1b3lung0.apiGym.exercise.application.create.ExerciseCreateRequest;
 import n1b3lung0.apiGym.exercise.application.delete.ExerciseDeleter;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
-import n1b3lung0.apiGym.exercise.application.find.dto.ExerciseResponse;
-import n1b3lung0.apiGym.exercise.application.find.exception.ExerciseNotFound;
+import n1b3lung0.apiGym.exercise.application.find.ExerciseResponse;
+import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotFound;
 import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdater;
-import n1b3lung0.apiGym.exercise.application.update.dto.ExerciseUpdateRequest;
+import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdateRequest;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
@@ -127,7 +127,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
         var newExercise = ExerciseMother.random().id(null).name(exercise.getName()).build();
         var request = ExerciseCreateRequest.fromExercise(newExercise);
-        var expected = String.format("Exercise with name %s already exists", newExercise.getName());
+        var expected = String.format(ExceptionConstants.EXERCISE_REPEATED, newExercise.getName());
 
         var actual = assertThrows(RuntimeException.class, () -> controller.create(request));
 

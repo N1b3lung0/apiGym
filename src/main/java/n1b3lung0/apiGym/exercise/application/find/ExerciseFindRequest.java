@@ -1,4 +1,4 @@
-package n1b3lung0.apiGym.exercise.application.find.dto;
+package n1b3lung0.apiGym.exercise.application.find;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

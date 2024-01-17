@@ -14,7 +14,7 @@ import java.io.Serializable;
 public final class Sorting implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 7293314549166385610L;
+    private static final long serialVersionUID = -1L;
 
     private final boolean sorted;
 

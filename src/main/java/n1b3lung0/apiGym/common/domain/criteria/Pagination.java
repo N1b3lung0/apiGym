@@ -12,7 +12,7 @@ import java.io.Serializable;
 public final class Pagination implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -7000872155707972340L;
+    private static final long serialVersionUID = -1L;
 
     private final boolean paginated;
     private final Integer pageNum;

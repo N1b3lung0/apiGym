@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class ExerciseChange implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 5170782781975934145L;
+    private static final long serialVersionUID = -1L;
 
     private final String field;
 

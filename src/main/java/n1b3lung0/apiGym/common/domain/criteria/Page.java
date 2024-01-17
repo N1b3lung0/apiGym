@@ -15,7 +15,7 @@ import java.util.List;
 public class Page<T> implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -2171721972991656021L;
+    private static final long serialVersionUID = -1L;
 
     private final List<T> content;
     private final int number;

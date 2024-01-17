@@ -13,7 +13,7 @@ import java.io.Serializable;
 public abstract class Criteria implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 2595360873171415418L;
+    private static final long serialVersionUID = -1L;
 
     private final Pagination pagination;
     private final Sorting sorting;

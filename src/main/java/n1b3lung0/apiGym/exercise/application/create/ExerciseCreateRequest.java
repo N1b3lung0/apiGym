@@ -1,4 +1,4 @@
-package n1b3lung0.apiGym.exercise.application.create.dto;
+package n1b3lung0.apiGym.exercise.application.create;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

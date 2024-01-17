@@ -31,7 +31,7 @@ public final class ExerciseMother {
         return create(
                 UUID.randomUUID(),
                 MotherCreator.random().name().name(),
-                MotherCreator.random().lorem().characters(10, 255),
+                MotherCreator.random().book().title(),
                 MotherCreator.random().internet().image(),
                 MotherCreator.random().internet().url(),
                 String.valueOf(MotherCreator.random().number().randomDigit()),
