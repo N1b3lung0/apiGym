@@ -1,4 +1,4 @@
-package n1b3lung0.apiGym.mother.common;
+package n1b3lung0.apiGym.common.mother;
 
 import java.util.Arrays;
 import java.util.List;

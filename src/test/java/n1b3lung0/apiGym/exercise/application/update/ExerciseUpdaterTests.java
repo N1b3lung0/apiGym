@@ -4,7 +4,7 @@ import n1b3lung0.apiGym.common.BaseUnitTest;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.domain.ExerciseChange;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
-import n1b3lung0.apiGym.mother.exercise.ExerciseMother;
+import n1b3lung0.apiGym.exercise.mother.ExerciseMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

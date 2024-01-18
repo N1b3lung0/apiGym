@@ -1,7 +1,7 @@
 package n1b3lung0.apiGym.common.infrastructure.audit;
 
 import n1b3lung0.apiGym.common.BaseIntegrationTest;
-import n1b3lung0.apiGym.mother.exercise.ExerciseMother;
+import n1b3lung0.apiGym.exercise.mother.ExerciseMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
