@@ -16,6 +16,7 @@ public class HibernateEventListenerConfigurer {
 
     @PostConstruct
     protected void init() {
+
         SessionFactoryImpl sessionFactory = emf.unwrap(SessionFactoryImpl.class);
         EventListenerRegistry registry = sessionFactory.getServiceRegistry().getService(EventListenerRegistry.class);
         assert registry != null;

@@ -14,6 +14,7 @@ public class AuditFieldsPreInsertAndUpdateUtils {
     private static final String AUDIT_FIELDS = "auditFields";
 
     static void setAuditFieldsToState(Object[] currentState, String[] propertyNames, Object value) {
+
         int index = ArrayUtils.indexOf(propertyNames, AUDIT_FIELDS);
         if (index >= 0) {
             currentState[index] = value;
@@ -21,6 +22,7 @@ public class AuditFieldsPreInsertAndUpdateUtils {
     }
 
     static void setAuditFieldsToEntity(Object entity, AuditFields value) {
+
         try {
             Field auditFields = getAuditFields(entity);
             auditFields.setAccessible(Boolean.TRUE);
@@ -31,7 +33,9 @@ public class AuditFieldsPreInsertAndUpdateUtils {
     }
 
     static AuditFields getAuditFieldsValue(Object entity) {
+
         AuditFields auditFieldsValue = null;
+
         try {
             Field auditFields = getAuditFields(entity);
             auditFields.setAccessible(Boolean.TRUE);
@@ -39,20 +43,25 @@ public class AuditFieldsPreInsertAndUpdateUtils {
         } catch (IllegalAccessException iae) {
             log.error("Audit fields value could not be obtained for class " + entity.getClass().getName());
         }
+
         return auditFieldsValue;
     }
 
     private static Field getAuditFields(Object entity) {
+
         Field field = null;
+
         try {
             field = entity.getClass().getDeclaredField(AUDIT_FIELDS);
         } catch (NoSuchFieldException e) {
             log.error("Audit fields could not be found in class " + entity.getClass().getName());
         }
+
         return field;
     }
 
     static boolean hasAuditFields(String[] propertyNames) {
+
         return Arrays.stream(propertyNames).anyMatch(name -> StringUtils.equals(name, AUDIT_FIELDS));
     }
 }

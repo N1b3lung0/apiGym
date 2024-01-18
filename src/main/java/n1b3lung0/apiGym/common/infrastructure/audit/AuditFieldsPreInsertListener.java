@@ -13,6 +13,7 @@ import static n1b3lung0.apiGym.common.infrastructure.audit.AuditFieldsPreInsertA
 public class AuditFieldsPreInsertListener implements PreInsertEventListener {
     @Override
     public boolean onPreInsert(PreInsertEvent event) {
+
         Object entity = event.getEntity();
         Object[] state = event.getState();
         String[] propertyNames = event.getPersister().getPropertyNames();
@@ -22,6 +23,7 @@ public class AuditFieldsPreInsertListener implements PreInsertEventListener {
             setAuditFieldsToEntity(entity, auditFields);
             setAuditFieldsToState(state, propertyNames, auditFields);
         }
+
         return false;
     }
 }
