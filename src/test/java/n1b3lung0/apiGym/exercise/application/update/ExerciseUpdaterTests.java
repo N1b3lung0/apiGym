@@ -65,6 +65,6 @@ class ExerciseUpdaterTests extends BaseUnitTest {
 
     @Test
     void shouldOnlyUpdateChangedValues() {
-        
+
     }
 }
