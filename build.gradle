@@ -58,6 +58,7 @@ dependencies {
 	testImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
 	testImplementation "org.testcontainers:postgresql:${testContainersVersion}"
 	testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterApiVersion}"
+	testImplementation "com.tngtech.archunit:archunit-junit5:${archunitVersion}"
 	testImplementation "net.datafaker:datafaker:${datafakerVersion}"
 
 	testAnnotationProcessor "org.projectlombok:lombok"

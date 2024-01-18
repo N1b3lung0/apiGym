@@ -14,7 +14,7 @@ import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdateRequest;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
-import n1b3lung0.apiGym.mother.exercise.ExerciseMother;
+import n1b3lung0.apiGym.exercise.mother.ExerciseMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
