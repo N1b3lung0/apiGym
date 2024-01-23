@@ -13,5 +13,25 @@ public abstract class BaseArchTest {
     protected static final String ANY_EXCEPTION_PACKAGE = "..exception..";
 
     // CONSTANTS
+    protected static final String INFRASTRUCTURE = "Infrastructure";
+    protected static final String DTO = "DTO";
+    protected static final String REQUEST = "Request";
+    protected static final String RESPONSE = "Response";
+    protected static final String COMMAND = "Command";
+    protected static final String QUERY = "Query";
+    protected static final String UTILS = "Utils";
+    protected static final String EXCEPTION = "Exception";
+    protected static final String REPOSITORY = "Repository";
+    protected static final String CONTROLLER = "Controller";
+    protected static final String SERVICE = "Service";
+    protected static final String SERVICE_IMPL = "ServiceImpl";
+    protected static final String CONFIG = "Config";
+    protected static final String CONFIG_PROPERTIES = "ConfigProperties";
+    protected static final String ENTITY = "Entity";
+    protected static final String MODEL = "Model";
+    protected static final String TEST = "Test";
+    protected static final String TESTS = "Tests";
+    protected static final String MOTHER = "Mother";
     protected static final String VALIDATOR = "Validator";
+    protected static final String BUILDER = "Builder";
 }
