@@ -6,7 +6,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.*;
+
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.With;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 
 import java.io.Serial;
@@ -15,7 +21,10 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
-@Data @Builder @RequiredArgsConstructor @NoArgsConstructor(force = true)
+@Data
+@Builder
+@RequiredArgsConstructor
+@NoArgsConstructor(force = true)
 @Table(name = "exercises")
 public final class Exercise implements Serializable {
 
