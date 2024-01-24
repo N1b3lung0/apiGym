@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 @Slf4j
-public class AuditFieldsPreInsertAndUpdateUtils {
+final class AuditFieldsPreInsertAndUpdateUtils {
 
     private static final String AUDIT_FIELDS = "auditFields";
 

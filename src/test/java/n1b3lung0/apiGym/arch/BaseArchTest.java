@@ -10,6 +10,7 @@ public abstract class BaseArchTest {
     protected static final String ANY_REST_PACKAGE = "..rest..";
     protected static final String CONFIG_PACKAGE = ".config..";
     protected static final String ANY_MOTHER_PACKAGE = "..mother..";
+    protected static final String COMMON_EXCEPTION_PACKAGE = "..common.domain.exception..";
     protected static final String ANY_EXCEPTION_PACKAGE = "..exception..";
 
     // CONSTANTS

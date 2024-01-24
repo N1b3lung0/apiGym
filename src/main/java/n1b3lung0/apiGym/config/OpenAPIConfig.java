@@ -19,12 +19,8 @@ import java.util.stream.Collectors;
 @Configuration
 @Profile(AppProfile.SWAGGER)
 public class OpenAPIConfig {
-
-    @Value("${n1b3lung0.openapi.dev-url}")
-    private String devUrl;
-
-    @Value("${n1b3lung0.openapi.prod-url}")
-    private String prodUrl;
+    private static final String devUrl = "http://localhost:8080";
+    private static final String prodUrl = "https://n1b3lung0-api.com";
 
     private static final String DEVSERVER_DESCRIPTION = "Server URL in Development Environment";
     private static final String PRODSERVER_DESCIPTION = "Server URL in Production Environment";
