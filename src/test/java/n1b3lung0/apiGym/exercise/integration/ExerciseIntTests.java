@@ -60,7 +60,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
     private Exercise exercise;
 
     @BeforeEach
-    void setUp() {
+    private void setUp() {
         exercise = ExerciseMother.random().id(null).build();
         em.persist(exercise);
     }
