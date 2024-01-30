@@ -15,6 +15,7 @@ public final class ExerciseMother {
             String image,
             String video,
             String restTime,
+            Integer intensity,
             AuditFields auditFields
     ) {
         return Exercise.builder()
@@ -24,6 +25,7 @@ public final class ExerciseMother {
                 .image(image)
                 .video(video)
                 .restTime(restTime)
+                .intensity(intensity)
                 .deleted(Boolean.FALSE)
                 .auditFields(auditFields);
     }
@@ -35,6 +37,7 @@ public final class ExerciseMother {
                 MotherCreator.random().internet().image(),
                 MotherCreator.random().internet().url(),
                 String.valueOf(MotherCreator.random().number().randomDigit()),
+                MotherCreator.random().number().numberBetween(1, 10),
                 new AuditFields()
         );
     }

@@ -29,7 +29,8 @@ public class ExerciseCreator {
                 request.getDescription(),
                 request.getImage(),
                 request.getVideo(),
-                request.getRestTime()
+                request.getRestTime(),
+                request.getIntensity()
         );
 
         Exercise created = repository.save(exercise);

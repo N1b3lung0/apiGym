@@ -147,6 +147,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
                 updatedExercise.getDescription(),
                 null,
                 null,
+                null,
                 null
         );
         var expected = ExerciseResponse.fromExercise(updatedExercise);

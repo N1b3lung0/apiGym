@@ -15,7 +15,7 @@ import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 public class ExerciseUpdateRequest {
 
     @NotBlank
-    @Schema(description = "")
+    @Schema(description = "Id del ejercicio")
     private String id;
 
     @NotBlank
@@ -34,4 +34,7 @@ public class ExerciseUpdateRequest {
 
     @Schema(description = "Nuevo tiempo de descanso del ejercicio entre series")
     private String restTime;
+
+    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 0 a 10")
+    private Integer intensity;
 }

@@ -55,6 +55,10 @@ public final class Exercise implements Serializable {
     @Column(name = "rest_time")
     private final String restTime;
 
+    @With
+    @Column(name = "intensity")
+    private final Integer intensity;
+
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
     private final boolean deleted;
@@ -71,7 +75,8 @@ public final class Exercise implements Serializable {
             String description,
             String image,
             String video,
-            String restTime
+            String restTime,
+            Integer intensity
     ) {
         return new Exercise(
                 null,
@@ -80,6 +85,7 @@ public final class Exercise implements Serializable {
                 image,
                 video,
                 restTime,
+                intensity,
                 Boolean.FALSE,
                 new AuditFields()
         );

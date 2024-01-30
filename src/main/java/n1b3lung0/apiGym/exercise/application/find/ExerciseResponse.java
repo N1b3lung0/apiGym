@@ -35,6 +35,9 @@ public class ExerciseResponse {
     @Schema(description = "Tiempo de descanso del ejercicio entre series")
     private String restTime;
 
+    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 0 a 10")
+    private Integer intensity;
+
     @EqualsAndHashCode.Exclude
     @Schema(description = "Fecha de creación del ejercicio")
     private LocalDateTime createdAt;
@@ -42,6 +45,14 @@ public class ExerciseResponse {
     @EqualsAndHashCode.Exclude
     @Schema(description = "Quién creó el ejercicio")
     private String createdBy;
+
+    @EqualsAndHashCode.Exclude
+    @Schema(description = "Fecha de actualización del ejercicio")
+    private LocalDateTime updatedAt;
+
+    @EqualsAndHashCode.Exclude
+    @Schema(description = "Quién actualizó el ejercicio")
+    private String updatedBy;
 
     public static ExerciseResponse fromExercise(Exercise exercise) {
         return exercise != null ? new ExerciseResponse(
@@ -51,8 +62,11 @@ public class ExerciseResponse {
                 exercise.getImage(),
                 exercise.getVideo(),
                 exercise.getRestTime(),
+                exercise.getIntensity(),
                 exercise.getAuditFields().getCreatedAt(),
-                exercise.getAuditFields().getCreatedBy()
+                exercise.getAuditFields().getCreatedBy(),
+                exercise.getAuditFields().getUpdatedAt(),
+                exercise.getAuditFields().getUpdatedBy()
         ) : new ExerciseResponse();
     }
 }

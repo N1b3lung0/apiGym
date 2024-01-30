@@ -32,19 +32,24 @@ public class ExerciseCreateRequest {
     @Schema(description = "Tiempo de descanso del ejercicio entre series")
     private String restTime;
 
+    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 0 a 10")
+    private Integer intensity;
+
     public Exercise toExercise(
             String name,
             String description,
             String image,
             String video,
-            String restTime
+            String restTime,
+            Integer intensity
     ) {
         return Exercise.create(
                 name,
                 description,
                 image,
                 video,
-                restTime
+                restTime,
+                intensity
         );
     }
 
@@ -54,7 +59,8 @@ public class ExerciseCreateRequest {
                 exercise.getDescription(),
                 exercise.getImage(),
                 exercise.getVideo(),
-                exercise.getRestTime()
+                exercise.getRestTime(),
+                exercise.getIntensity()
         );
     }
 }
