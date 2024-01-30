@@ -25,6 +25,9 @@ start-db:
 clean-db:
 	@./gradlew flyway:clean
 
+delete-schema:
+	@rm -rf schema.sql
+
 generate-schema:
 	@rm -rf schema.sql
 	@./gradlew bootRun -Pdev,schema
