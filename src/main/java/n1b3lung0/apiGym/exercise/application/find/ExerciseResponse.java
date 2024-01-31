@@ -35,7 +35,7 @@ public class ExerciseResponse {
     @Schema(description = "Tiempo de descanso del ejercicio entre series")
     private String restTime;
 
-    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 0 a 10")
+    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     private Integer intensity;
 
     @EqualsAndHashCode.Exclude

@@ -1,6 +1,8 @@
 package n1b3lung0.apiGym.exercise.application.create;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Data
 @NoArgsConstructor
@@ -32,7 +35,8 @@ public class ExerciseCreateRequest {
     @Schema(description = "Tiempo de descanso del ejercicio entre series")
     private String restTime;
 
-    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 0 a 10")
+    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
+    @Min(value = 1) @Max(value = 10)
     private Integer intensity;
 
     public Exercise toExercise(
