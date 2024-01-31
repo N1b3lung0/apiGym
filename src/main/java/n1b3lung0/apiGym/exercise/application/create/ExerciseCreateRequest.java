@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
+import n1b3lung0.apiGym.exercise.domain.RestTime;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Data
@@ -19,7 +20,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 public class ExerciseCreateRequest {
 
     @NotBlank
-    @Size(max = 255, message = ExceptionConstants.EXERCISE_NAME_LENGTH_NOT_VALID)
+    @Size(min = 4, max = 255, message = ExceptionConstants.EXERCISE_NAME_LENGTH_NOT_VALID)
     @Schema(description = "Nombre del ejercicio")
     private String name;
 
@@ -33,10 +34,11 @@ public class ExerciseCreateRequest {
     private String video;
 
     @Schema(description = "Tiempo de descanso del ejercicio entre series")
-    private String restTime;
+    private RestTime restTime;
 
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
-    @Min(value = 1) @Max(value = 10)
+    @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)
+    @Max(value = 10, message = ExceptionConstants.EXERCISE_INTENSITY_MAX)
     private Integer intensity;
 
     public Exercise toExercise(
@@ -44,7 +46,7 @@ public class ExerciseCreateRequest {
             String description,
             String image,
             String video,
-            String restTime,
+            RestTime restTime,
             Integer intensity
     ) {
         return Exercise.create(

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
+import n1b3lung0.apiGym.exercise.domain.RestTime;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +34,7 @@ public class ExerciseResponse {
     private String video;
 
     @Schema(description = "Tiempo de descanso del ejercicio entre series")
-    private String restTime;
+    private RestTime restTime;
 
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     private Integer intensity;

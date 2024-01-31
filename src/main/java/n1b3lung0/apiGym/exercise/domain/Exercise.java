@@ -53,7 +53,7 @@ public final class Exercise implements Serializable {
 
     @With
     @Column(name = "rest_time")
-    private final String restTime;
+    private final RestTime restTime;
 
     @With
     @Column(name = "intensity")
@@ -75,7 +75,7 @@ public final class Exercise implements Serializable {
             String description,
             String image,
             String video,
-            String restTime,
+            RestTime restTime,
             Integer intensity
     ) {
         return new Exercise(

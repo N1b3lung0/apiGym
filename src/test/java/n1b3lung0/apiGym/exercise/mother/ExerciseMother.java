@@ -3,6 +3,7 @@ package n1b3lung0.apiGym.exercise.mother;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.common.mother.MotherCreator;
+import n1b3lung0.apiGym.exercise.domain.RestTime;
 
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public final class ExerciseMother {
             String description,
             String image,
             String video,
-            String restTime,
+            RestTime restTime,
             Integer intensity,
             AuditFields auditFields
     ) {
@@ -36,7 +37,7 @@ public final class ExerciseMother {
                 MotherCreator.random().book().title(),
                 MotherCreator.random().internet().image(),
                 MotherCreator.random().internet().url(),
-                String.valueOf(MotherCreator.random().number().randomDigit()),
+                RestTimeMother.random(),
                 MotherCreator.random().number().numberBetween(1, 10),
                 new AuditFields()
         );

@@ -6,7 +6,7 @@ create table exercises (
    description varchar(255),
    image varchar(255),
    video varchar(255),
-   rest_time varchar(255),
+   rest_time smallint check (rest_time between 0 and 4),
    intensity integer,
    deleted boolean,
    created_at timestamp(6),

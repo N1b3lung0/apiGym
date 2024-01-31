@@ -16,4 +16,6 @@ public final class ExceptionConstants {
     public static final String EXERCISE_NAME_LENGTH_NOT_VALID = "Name exercise must not be more than {max} characters long";
     public static final String EXERCISE_NOT_VALID = "Exercise '%s' is not valid. Reason: '%s'";
     public static final String EXERCISE_REPEATED = "An exercise with name %s has already been created";
+    public static final String EXERCISE_INTENSITY_MIN = "Intensity of an exercise has to be minimum {value}";
+    public static final String EXERCISE_INTENSITY_MAX = "Intensity of an exercise has to be maximum {value}";
 }

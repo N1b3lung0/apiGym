@@ -8,6 +8,7 @@ import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseChange;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
+import n1b3lung0.apiGym.exercise.domain.RestTime;
 import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotValid;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -65,8 +66,8 @@ public class ExerciseUpdater {
             changes.add(ExerciseChange.create(VIDEO_FIELD, exercise.getVideo()));
         }
 
-        String restTime = request.getRestTime();
-        if (restTime != null && !StringUtils.equals(restTime, exercise.getRestTime())) {
+        RestTime restTime = request.getRestTime();
+        if (restTime != null && !restTime.equals(exercise.getRestTime())) {
             exercise = exercise.withRestTime(restTime);
             changes.add(ExerciseChange.create(REST_TIME_FIELD, exercise.getRestTime()));
         }
