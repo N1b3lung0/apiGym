@@ -7,7 +7,6 @@ import com.tngtech.archunit.lang.ArchRule;
 import n1b3lung0.apiGym.common.BaseIntegrationTest;
 import n1b3lung0.apiGym.common.BaseUnitTest;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields;

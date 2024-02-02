@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.RestTime;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @AllArgsConstructor
@@ -41,7 +41,7 @@ public class ExerciseResponse {
 
     @EqualsAndHashCode.Exclude
     @Schema(description = "Fecha de creación del ejercicio")
-    private LocalDateTime createdAt;
+    private ZonedDateTime createdAt;
 
     @EqualsAndHashCode.Exclude
     @Schema(description = "Quién creó el ejercicio")
@@ -49,7 +49,7 @@ public class ExerciseResponse {
 
     @EqualsAndHashCode.Exclude
     @Schema(description = "Fecha de actualización del ejercicio")
-    private LocalDateTime updatedAt;
+    private ZonedDateTime updatedAt;
 
     @EqualsAndHashCode.Exclude
     @Schema(description = "Quién actualizó el ejercicio")

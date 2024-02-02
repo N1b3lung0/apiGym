@@ -1,8 +1,8 @@
 package n1b3lung0.apiGym.exercise.mother;
 
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
-import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.common.mother.MotherCreator;
+import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.RestTime;
 
 import java.util.UUID;

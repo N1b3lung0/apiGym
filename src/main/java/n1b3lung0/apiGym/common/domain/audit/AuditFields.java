@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public final class AuditFields implements Serializable {
 
     @EqualsAndHashCode.Exclude
     @Column(name = "created_at")
-    private final LocalDateTime createdAt;
+    private final ZonedDateTime createdAt;
 
     @EqualsAndHashCode.Exclude
     @Column(name = "created_by")
@@ -30,7 +30,7 @@ public final class AuditFields implements Serializable {
 
     @EqualsAndHashCode.Exclude
     @Column(name = "updated_at")
-    private final LocalDateTime updatedAt;
+    private final ZonedDateTime updatedAt;
 
     @EqualsAndHashCode.Exclude
     @Column(name = "updated_by")

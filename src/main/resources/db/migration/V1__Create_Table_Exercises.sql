@@ -9,9 +9,11 @@ create table exercises (
    rest_time smallint check (rest_time between 0 and 4),
    intensity integer,
    deleted boolean,
-   created_at timestamp(6),
+   created_at timestamp(6) with time zone,
    created_by varchar(255),
-   updated_at timestamp(6),
+   updated_at timestamp(6) with time zone,
    updated_by varchar(255),
+   deleted_at timestamp(6) with time zone,
+   deleted_by varchar(255),
    primary key (id)
 );

@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -63,9 +62,13 @@ public final class Exercise implements Serializable {
     @Column(name = "deleted")
     private final boolean deleted;
 
-//    @With(AccessLevel.PRIVATE)
-//    @Column(name = "deleted_at")
-//    private final ZonedDateTime deletedAt;
+    @With(AccessLevel.PRIVATE)
+    @Column(name = "deleted_at")
+    private final ZonedDateTime deletedAt;
+
+    @With(AccessLevel.PRIVATE)
+    @Column(name = "deleted_by")
+    private final String deletedBy;
 
     @Embedded
     private final AuditFields auditFields;
@@ -87,11 +90,15 @@ public final class Exercise implements Serializable {
                 restTime,
                 intensity,
                 Boolean.FALSE,
+                null,
+                null,
                 new AuditFields()
         );
     }
 
     public Exercise delete() {
-        return withDeleted(Boolean.TRUE);
+        return withDeleted(Boolean.TRUE)
+                .withDeletedAt(ZonedDateTime.now())
+                .withDeletedBy("n1b3lung0");
     }
 }

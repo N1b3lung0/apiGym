@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import n1b3lung0.apiGym.common.application.dto.PageResponse;
 import n1b3lung0.apiGym.common.application.utils.uuid.UUIDUtils;
 import n1b3lung0.apiGym.common.domain.criteria.Page;
-import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotFound;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
+import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotFound;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

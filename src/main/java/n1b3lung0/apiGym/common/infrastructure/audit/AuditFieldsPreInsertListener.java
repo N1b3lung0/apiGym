@@ -4,7 +4,7 @@ import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import org.hibernate.event.spi.PreInsertEvent;
 import org.hibernate.event.spi.PreInsertEventListener;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import static n1b3lung0.apiGym.common.infrastructure.audit.AuditFieldsPreInsertAndUpdateUtils.hasAuditFields;
 import static n1b3lung0.apiGym.common.infrastructure.audit.AuditFieldsPreInsertAndUpdateUtils.setAuditFieldsToEntity;
@@ -19,7 +19,7 @@ public class AuditFieldsPreInsertListener implements PreInsertEventListener {
         String[] propertyNames = event.getPersister().getPropertyNames();
 
         if (hasAuditFields(propertyNames)) {
-            AuditFields auditFields = new AuditFields(LocalDateTime.now(), "n1b3lung0", null, null);
+            AuditFields auditFields = new AuditFields(ZonedDateTime.now(), "n1b3lung0", null, null);
             setAuditFieldsToEntity(entity, auditFields);
             setAuditFieldsToState(state, propertyNames, auditFields);
         }
