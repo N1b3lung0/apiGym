@@ -1,21 +1,21 @@
 package n1b3lung0.apiGym.exercise.domain;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-
 @Data
 @Builder
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "series")
-public final class Serie implements Serializable {
+@Table(name = "category")
+public final class Category implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
@@ -25,12 +25,8 @@ public final class Serie implements Serializable {
     @GeneratedValue
     private final UUID id;
 
-    @ManyToOne
-    private final ExerciseSeries exerciseSeries;
+    private final String name;
 
-    private final Integer serialNumber;
-
-    private final Integer repetitionsToDo;
-
-    private final Integer repetitionsDone;
+    @ManyToMany
+    private final List<Exercise> exercises;
 }

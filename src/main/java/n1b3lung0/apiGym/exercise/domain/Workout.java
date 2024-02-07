@@ -6,16 +6,16 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-
 @Data
 @Builder
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "series")
-public final class Serie implements Serializable {
+@Table(name = "workout")
+public final class Workout implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
@@ -25,12 +25,14 @@ public final class Serie implements Serializable {
     @GeneratedValue
     private final UUID id;
 
-    @ManyToOne
-    private final ExerciseSeries exerciseSeries;
+    @OneToMany(mappedBy = "workout")
+    private final List<ExerciseSeries> exerciseSeries;
 
-    private final Integer serialNumber;
+//    @ManyToOne
+//    private final Trainee trainee; @OneToMany(mappedBy = "trainee")
 
-    private final Integer repetitionsToDo;
+    private final ZonedDateTime start;
 
-    private final Integer repetitionsDone;
+    private final ZonedDateTime end;
+
 }

@@ -6,16 +6,16 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-
 @Data
 @Builder
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "series")
-public final class Serie implements Serializable {
+@Table(name = "exercise_series")
+public final class ExerciseSeries implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
@@ -26,11 +26,17 @@ public final class Serie implements Serializable {
     private final UUID id;
 
     @ManyToOne
-    private final ExerciseSeries exerciseSeries;
+    private final Workout workout;
 
-    private final Integer serialNumber;
+    @OneToOne
+    private final Exercise exercise;
 
-    private final Integer repetitionsToDo;
+    @OneToMany(mappedBy = "exerciseSeries")
+    private final List<Serie> series;
 
-    private final Integer repetitionsDone;
+    // TODO: Meter aquí el weight
+
+    private final ZonedDateTime start;
+
+    private final ZonedDateTime end;
 }

@@ -1,24 +1,13 @@
 package n1b3lung0.apiGym.exercise.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.With;
+import jakarta.persistence.*;
+import lombok.*;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,7 +23,8 @@ public final class Exercise implements Serializable {
     private static final long serialVersionUID = -1L;
 
     @With
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private final UUID id;
 
     @With
@@ -47,27 +37,26 @@ public final class Exercise implements Serializable {
 
     @With
     @Column(name = "image")
-    private final String image;
+    private final String image; // TODO: Una imagen tiene más que URL.
 
     @With
     @Column(name = "video")
-    private final String video;
+    private final String video; // TODO: Un vídeo tiene más que URL.
 
     @With
     @Column(name = "rest_time")
-    private final RestTime restTime;
+    private final RestTime restTime; // TODO: En realidad el tiempo de descanso iría en el ExerciseSeries porque lo puedes definir para cada caso
 
     @With
     @Column(name = "intensity")
     private final Integer intensity;
 
-    @Column(name = "series")
-    //@Transient
-    private final List<Serie> series;
+    @ManyToMany
+    private final List<Category> categories;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
-    private final boolean deleted;
+    private final boolean deleted; // TODO: Cambiar por active y filtrar que no salgan los active=false en las búsquedas, pero el ejercicio sigue existiendo siempre por historial
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted_at")
@@ -96,6 +85,7 @@ public final class Exercise implements Serializable {
                 video,
                 restTime,
                 intensity,
+                new ArrayList<>(),
                 Boolean.FALSE,
                 null,
                 null,
