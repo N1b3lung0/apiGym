@@ -5,7 +5,9 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +19,7 @@ import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -57,6 +60,10 @@ public final class Exercise implements Serializable {
     @With
     @Column(name = "intensity")
     private final Integer intensity;
+
+    @Column(name = "series")
+    //@Transient
+    private final List<Serie> series;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
