@@ -5,9 +5,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +17,6 @@ import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -47,27 +44,26 @@ public final class Exercise implements Serializable {
 
     @With
     @Column(name = "image")
-    private final String image;
+    private final String image; // TODO: Una imagen tiene más que URL
 
     @With
     @Column(name = "video")
-    private final String video;
+    private final String video; // TODO: Un video tiene más que URL
 
     @With
     @Column(name = "rest_time")
-    private final RestTime restTime;
+    private final RestTime restTime; // TODO: En realidad tiene que ir en ExerciseSeries
 
     @With
     @Column(name = "intensity")
     private final Integer intensity;
 
-    @Column(name = "series")
-    //@Transient
-    private final List<Serie> series;
+    //@ManyToMany
+    //private final List<Category> categories;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
-    private final boolean deleted;
+    private final boolean deleted; // TODO: Cambiar por active y filtrar que no salgan los active= false
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted_at")
