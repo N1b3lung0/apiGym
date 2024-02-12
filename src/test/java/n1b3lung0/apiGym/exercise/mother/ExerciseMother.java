@@ -5,6 +5,8 @@ import n1b3lung0.apiGym.common.mother.MotherCreator;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.RestTime;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public final class ExerciseMother {
@@ -41,5 +43,13 @@ public final class ExerciseMother {
                 MotherCreator.random().number().numberBetween(1, 10),
                 new AuditFields()
         );
+    }
+
+    public static List<Exercise> randomList(int num) {
+        List<Exercise> exercises = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            exercises.add(random().build());
+        }
+        return exercises;
     }
 }
