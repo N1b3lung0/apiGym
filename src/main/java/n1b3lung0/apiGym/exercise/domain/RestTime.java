@@ -1,5 +1,8 @@
 package n1b3lung0.apiGym.exercise.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum RestTime {
     THIRTY_SECONDS("30"),
     ONE_MINUTE("60"),
@@ -11,9 +14,5 @@ public enum RestTime {
 
     RestTime(String seconds) {
         this.seconds = seconds;
-    }
-
-    public String getSeconds() {
-        return seconds;
     }
 }
