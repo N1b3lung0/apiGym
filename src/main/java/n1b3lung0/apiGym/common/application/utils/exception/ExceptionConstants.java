@@ -18,4 +18,7 @@ public final class ExceptionConstants {
     public static final String EXERCISE_REPEATED = "An exercise with name %s has already been created";
     public static final String EXERCISE_INTENSITY_MIN = "Intensity of an exercise has to be minimum {value}";
     public static final String EXERCISE_INTENSITY_MAX = "Intensity of an exercise has to be maximum {value}";
+
+    // CATEGORY
+    public static final String CATEGORY_NOT_FOUND = "A category with ID '%s' could not be found";
 }
