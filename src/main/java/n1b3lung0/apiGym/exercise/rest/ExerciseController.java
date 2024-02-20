@@ -36,7 +36,7 @@ import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/exercises")
+@RequestMapping("/api/exercises")
 @Tag(name = "Exercises", description = "Endpoints to perform operations with exercises")
 public class ExerciseController extends BaseRestController {
 
