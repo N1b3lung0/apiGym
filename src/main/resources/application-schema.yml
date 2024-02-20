@@ -1,7 +1,7 @@
 spring:
   jpa:
     properties:
-      javax:
+      jakarta:
         persistence:
           # SCHEMA GENERATION
           schema-generation:
