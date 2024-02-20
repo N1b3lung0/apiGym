@@ -1,5 +1,6 @@
 package n1b3lung0.apiGym.exercise.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,9 +44,13 @@ public final class ExerciseSeries implements Serializable {
 
     // TODO: Meter aquí el weight
 
-    private final ZonedDateTime start;
+    @With
+    @Column(name = "start_series")
+    private final ZonedDateTime startSeries;
 
-    private final ZonedDateTime end;
+    @With
+    @Column(name = "end_series")
+    private final ZonedDateTime endSeries;
 
     @Embedded
     private final AuditFields auditFields;
