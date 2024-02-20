@@ -1,22 +1,20 @@
 package n1b3lung0.apiGym.exercise.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.With;
+import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -58,8 +56,9 @@ public final class Exercise implements Serializable {
     @Column(name = "intensity")
     private final Integer intensity;
 
-    //@ManyToMany
-    //private final List<Category> categories;
+    @With
+    @ManyToMany
+    private final List<Category> categories;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
@@ -92,6 +91,7 @@ public final class Exercise implements Serializable {
                 video,
                 restTime,
                 intensity,
+                new ArrayList<>(),
                 Boolean.FALSE,
                 null,
                 null,

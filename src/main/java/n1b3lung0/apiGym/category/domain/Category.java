@@ -1,22 +1,15 @@
 package n1b3lung0.apiGym.category.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.With;
+import jakarta.persistence.*;
+import lombok.*;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
+import n1b3lung0.apiGym.exercise.domain.Exercise;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -31,15 +24,17 @@ public final class Category implements Serializable {
     private static final long serialVersionUID = -1L;
 
     @With
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private final UUID id;
 
     @With
     @Column(name = "name", nullable = false, unique = true)
     private final String name;
 
-    //@ManyToMany
-    //private final List<Exercise> exercises;
+    @With
+    @ManyToMany
+    private final List<Exercise> exercises;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
@@ -62,6 +57,7 @@ public final class Category implements Serializable {
         return new Category(
                 null,
                 name,
+                new ArrayList<>(),
                 Boolean.FALSE,
                 null,
                 null,
