@@ -16,7 +16,7 @@ services:
 
   db:
     container_name: apigym-db
-    image: postgres:15-alpine
+    image: postgres:16.2-alpine
     restart: unless-stopped
     ports:
       - 5432:5432
@@ -32,7 +32,7 @@ services:
 
   cloudbeaver:
     container_name: apigym-cloudbeaver
-    image: dbeaver/cloudbeaver
+    image: dbeaver/cloudbeaver:23.3.4
     restart: unless-stopped
     ports:
       - 9090:8978
