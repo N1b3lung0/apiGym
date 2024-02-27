@@ -6,18 +6,25 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import n1b3lung0.apiGym.category.application.create.CategoryCreateRequest;
 import n1b3lung0.apiGym.category.application.create.CategoryCreator;
+import n1b3lung0.apiGym.category.application.delete.CategoryDeleter;
 import n1b3lung0.apiGym.category.application.find.CategoryFindRequest;
 import n1b3lung0.apiGym.category.application.find.CategoryFinder;
 import n1b3lung0.apiGym.category.application.find.CategoryResponse;
+import n1b3lung0.apiGym.category.application.update.CategoryUpdateRequest;
+import n1b3lung0.apiGym.category.application.update.CategoryUpdater;
 import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.application.dto.PageResponse;
 import n1b3lung0.apiGym.common.rest.BaseRestController;
 import n1b3lung0.apiGym.common.rest.swagger.CreatedRes;
+import n1b3lung0.apiGym.common.rest.swagger.NoContentRes;
+import n1b3lung0.apiGym.common.rest.swagger.NotFoundRes;
 import n1b3lung0.apiGym.common.rest.swagger.OkRes;
 import n1b3lung0.apiGym.common.rest.swagger.SecurityRes;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +42,8 @@ public class CategoryController extends BaseRestController {
 
     private final CategoryFinder finder;
     private final CategoryCreator creator;
+    private final CategoryUpdater updater;
+    private final CategoryDeleter deleter;
 
     @OkRes @SecurityRes
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,5 +65,20 @@ public class CategoryController extends BaseRestController {
         Category saved = creator.create(request);
         URI location = UriComponentsBuilder.fromPath("/api/categories/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @OkRes @NotFoundRes @SecurityRes
+    @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Update a given category", description = "Update a given category")
+    public ResponseEntity<CategoryResponse> update(@RequestBody @Valid CategoryUpdateRequest request) {
+        return ResponseEntity.ok(CategoryResponse.fromCategory(updater.updateFields(request)));
+    }
+
+    @NoContentRes @NotFoundRes @SecurityRes
+    @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Delete a given category", description = "Delete a given category")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        deleter.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
