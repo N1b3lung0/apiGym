@@ -8,6 +8,8 @@ import n1b3lung0.apiGym.exercise.domain.RestTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class ExerciseMother {
 
@@ -46,10 +48,6 @@ public final class ExerciseMother {
     }
 
     public static List<Exercise> randomList(int num) {
-        List<Exercise> exercises = new ArrayList<>();
-        for (int i = 0; i < num; i++) {
-            exercises.add(random().build());
-        }
-        return exercises;
+        return IntStream.range(0, num).boxed().map(idx -> random().build()).collect(Collectors.toList());
     }
 }

@@ -30,6 +30,7 @@ dependencies {
 	annotationProcessor "org.projectlombok:lombok"
 	compileOnly "org.projectlombok:lombok"
 	developmentOnly "org.springframework.boot:spring-boot-docker-compose"
+	implementation "org.slf4j:jcl-over-slf4j:2.0.9"
 
 	// WEB
 	implementation 'org.springframework.boot:spring-boot-starter-web'
