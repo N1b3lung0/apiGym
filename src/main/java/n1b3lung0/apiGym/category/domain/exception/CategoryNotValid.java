@@ -5,7 +5,7 @@ import n1b3lung0.apiGym.common.domain.exception.NotValid;
 
 import java.io.Serial;
 
-public class CategoryNotValid extends NotValid {
+public final class CategoryNotValid extends NotValid {
 
     @Serial
     private static final long serialVersionUID = -1L;

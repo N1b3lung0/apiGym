@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.io.Serial;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class CategoryAlreadyExists extends AlreadyExists {
+public final class CategoryAlreadyExists extends AlreadyExists {
 
     @Serial
     private static final long serialVersionUID = -1L;
