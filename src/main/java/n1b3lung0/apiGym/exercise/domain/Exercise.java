@@ -5,18 +5,26 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.With;
+import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -58,8 +66,14 @@ public final class Exercise implements Serializable {
     @Column(name = "intensity")
     private final Integer intensity;
 
-    //@ManyToMany
-    //private final List<Category> categories;
+    @With
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany
+    @JoinTable(name = "exercises_categories",
+        joinColumns = {@JoinColumn(name = "exercise_id")},
+        inverseJoinColumns = {@JoinColumn(name = "category_id")})
+    private final Set<Category> categories;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
@@ -75,6 +89,12 @@ public final class Exercise implements Serializable {
 
     @Embedded
     private final AuditFields auditFields;
+
+    public void addCategory(Category newCategory) {
+        if (categories != null) {
+            categories.add(newCategory);
+        }
+    }
 
     public static Exercise create(
             String name,
@@ -92,6 +112,7 @@ public final class Exercise implements Serializable {
                 video,
                 restTime,
                 intensity,
+                new HashSet<>(),
                 Boolean.FALSE,
                 null,
                 null,

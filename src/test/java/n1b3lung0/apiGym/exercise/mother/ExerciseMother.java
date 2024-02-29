@@ -1,12 +1,15 @@
 package n1b3lung0.apiGym.exercise.mother;
 
+import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import n1b3lung0.apiGym.common.mother.MotherCreator;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.RestTime;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,6 +24,7 @@ public final class ExerciseMother {
             String video,
             RestTime restTime,
             Integer intensity,
+            Set<Category> categories,
             AuditFields auditFields
     ) {
         return Exercise.builder()
@@ -32,6 +36,7 @@ public final class ExerciseMother {
                 .restTime(restTime)
                 .intensity(intensity)
                 .deleted(Boolean.FALSE)
+                .categories(categories)
                 .auditFields(auditFields);
     }
     public static Exercise.ExerciseBuilder random() {
@@ -43,6 +48,7 @@ public final class ExerciseMother {
                 MotherCreator.random().internet().url(),
                 RestTimeMother.random(),
                 MotherCreator.random().number().numberBetween(1, 10),
+                new HashSet<>(),
                 new AuditFields()
         );
     }

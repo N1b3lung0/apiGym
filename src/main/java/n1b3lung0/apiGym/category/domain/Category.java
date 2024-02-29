@@ -5,6 +5,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,10 +14,13 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.With;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
+import n1b3lung0.apiGym.exercise.domain.Exercise;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -38,8 +42,8 @@ public final class Category implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     private final String name;
 
-    //@ManyToMany
-    //private final List<Exercise> exercises;
+    @ManyToMany(mappedBy = "categories")
+    private final Set<Exercise> exercises;
 
     @With(AccessLevel.PRIVATE)
     @Column(name = "deleted")
@@ -62,6 +66,7 @@ public final class Category implements Serializable {
         return new Category(
                 null,
                 name,
+                new HashSet<>(),
                 Boolean.FALSE,
                 null,
                 null,

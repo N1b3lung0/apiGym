@@ -6,10 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import n1b3lung0.apiGym.category.application.find.CategoryResponse;
+import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.RestTime;
 
 import java.time.ZonedDateTime;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -39,6 +43,9 @@ public class ExerciseResponse {
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     private Integer intensity;
 
+    @Schema(description = "Categorías a las que pertenece el ejercicio")
+    private Set<CategoryResponse> categories;
+
     @EqualsAndHashCode.Exclude
     @Schema(description = "Fecha de creación del ejercicio")
     private ZonedDateTime createdAt;
@@ -64,6 +71,7 @@ public class ExerciseResponse {
                 exercise.getVideo(),
                 exercise.getRestTime(),
                 exercise.getIntensity(),
+                exercise.getCategories().stream().map(CategoryResponse::fromCategory).collect(Collectors.toSet()),
                 exercise.getAuditFields().getCreatedAt(),
                 exercise.getAuditFields().getCreatedBy(),
                 exercise.getAuditFields().getUpdatedAt(),

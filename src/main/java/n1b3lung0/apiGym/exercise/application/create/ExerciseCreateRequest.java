@@ -8,9 +8,15 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.RestTime;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -40,6 +46,9 @@ public class ExerciseCreateRequest {
     @Max(value = 10, message = ExceptionConstants.EXERCISE_INTENSITY_MAX)
     private Integer intensity;
 
+    @Schema(description = "Categorías a las que pertenece el ejercicio")
+    private Set<String> categoryIds;
+
     public Exercise toExercise(
             String name,
             String description,
@@ -65,7 +74,10 @@ public class ExerciseCreateRequest {
                 exercise.getImage(),
                 exercise.getVideo(),
                 exercise.getRestTime(),
-                exercise.getIntensity()
+                exercise.getIntensity(),
+                exercise.getCategories().stream()
+                        .map(category -> category.getId().toString())
+                        .collect(Collectors.toSet())
         );
     }
 }

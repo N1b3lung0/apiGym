@@ -30,5 +30,6 @@ public class ApplicationTests extends BaseArchTest {
             .that().areDeclaredInClassesThat().areAnnotatedWith(Service.class)
             .and().areDeclaredInClassesThat().resideInAPackage(ANY_APPLICATION_PACKAGE)
             .and().areDeclaredInClassesThat().haveSimpleNameNotEndingWith(VALIDATOR)
+            .and().arePublic()
             .should().beAnnotatedWith(Transactional.class);
 }
