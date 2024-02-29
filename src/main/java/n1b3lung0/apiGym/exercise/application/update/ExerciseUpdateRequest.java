@@ -9,7 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
-import n1b3lung0.apiGym.exercise.domain.RestTime;
+import n1b3lung0.apiGym.exercise.domain.Image;
+import n1b3lung0.apiGym.exercise.domain.Video;
 
 @Data
 @NoArgsConstructor
@@ -30,10 +31,10 @@ public class ExerciseUpdateRequest {
     private String  description;
 
     @Schema(description = "Nueva imagen del ejercicio")
-    private String image;
+    private Image image;
 
     @Schema(description = "Nuevo video del ejercicio")
-    private String video;
+    private Video video;
 
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)

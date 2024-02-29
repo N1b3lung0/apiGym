@@ -8,8 +8,11 @@ import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseChange;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
+import n1b3lung0.apiGym.exercise.domain.Image;
+import n1b3lung0.apiGym.exercise.domain.Video;
 import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotValid;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,14 +55,14 @@ public class ExerciseUpdater {
             changes.add(ExerciseChange.create(DESCRIPTION_FIELD, exercise.getDescription()));
         }
 
-        String image = request.getImage();
-        if (image != null && !StringUtils.equals(image, exercise.getImage())) {
+        Image image = request.getImage();
+        if (image != null && ObjectUtils.notEqual(image, exercise.getImage())) {
             exercise = exercise.withImage(image);
             changes.add(ExerciseChange.create(IMAGE_FIELD, exercise.getImage()));
         }
 
-        String video = request.getVideo();
-        if (video != null && !StringUtils.equals(video, exercise.getVideo())) {
+        Video video = request.getVideo();
+        if (video != null && ObjectUtils.notEqual(video, exercise.getVideo())) {
             exercise = exercise.withVideo(video);
             changes.add(ExerciseChange.create(VIDEO_FIELD, exercise.getVideo()));
         }

@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.category.application.find.CategoryResponse;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
+import n1b3lung0.apiGym.exercise.domain.Image;
+import n1b3lung0.apiGym.exercise.domain.Video;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
@@ -30,10 +32,10 @@ public class ExerciseResponse {
     private String description;
 
     @Schema(description = "Imagen del ejercicio")
-    private String image;
+    private Image image;
 
     @Schema(description = "Video del ejercicio")
-    private String video;
+    private Video video;
 
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     private Integer intensity;

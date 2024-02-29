@@ -1,5 +1,7 @@
 package n1b3lung0.apiGym.exercise.domain;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -51,12 +53,22 @@ public final class Exercise implements Serializable {
     private final String description;
 
     @With
-    @Column(name = "image")
-    private final String image; // TODO: Una imagen tiene más que URL
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "image_name")),
+            @AttributeOverride(name = "description", column = @Column(name = "image_description")),
+            @AttributeOverride(name = "url", column = @Column(name = "image_url"))
+    })
+    private final Image image;
 
     @With
-    @Column(name = "video")
-    private final String video; // TODO: Un video tiene más que URL
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "video_name")),
+            @AttributeOverride(name = "description", column = @Column(name = "video_description")),
+            @AttributeOverride(name = "url", column = @Column(name = "video_url"))
+    })
+    private final Video video;
 
     @With
     @Column(name = "intensity")
@@ -95,8 +107,8 @@ public final class Exercise implements Serializable {
     public static Exercise create(
             String name,
             String description,
-            String image,
-            String video,
+            Image image,
+            Video video,
             Integer intensity
     ) {
         return new Exercise(

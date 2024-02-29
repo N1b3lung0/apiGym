@@ -8,12 +8,10 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
-import n1b3lung0.apiGym.exercise.domain.RestTime;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import n1b3lung0.apiGym.exercise.domain.Image;
+import n1b3lung0.apiGym.exercise.domain.Video;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -33,10 +31,10 @@ public class ExerciseCreateRequest {
     private String description;
 
     @Schema(description = "Imagen del ejercicio")
-    private String image;
+    private Image image;
 
     @Schema(description = "Video del ejercicio")
-    private String video;
+    private Video video;
 
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)
@@ -49,8 +47,8 @@ public class ExerciseCreateRequest {
     public Exercise toExercise(
             String name,
             String description,
-            String image,
-            String video,
+            Image image,
+            Video video,
             Integer intensity
     ) {
         return Exercise.create(
