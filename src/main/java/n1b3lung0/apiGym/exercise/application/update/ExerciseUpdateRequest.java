@@ -12,6 +12,8 @@ import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.exercise.domain.Image;
 import n1b3lung0.apiGym.exercise.domain.Video;
 
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,4 +42,7 @@ public class ExerciseUpdateRequest {
     @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)
     @Max(value = 10, message = ExceptionConstants.EXERCISE_INTENSITY_MAX)
     private Integer intensity;
+
+    @Schema(description = "Categorías a las que pertenece el ejercicio")
+    private Set<String> categoryIds;
 }

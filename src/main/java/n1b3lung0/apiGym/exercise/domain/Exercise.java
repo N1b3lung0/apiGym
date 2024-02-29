@@ -98,12 +98,6 @@ public final class Exercise implements Serializable {
     @Embedded
     private final AuditFields auditFields;
 
-    public void addCategory(Category newCategory) {
-        if (categories != null) {
-            categories.add(newCategory);
-        }
-    }
-
     public static Exercise create(
             String name,
             String description,
