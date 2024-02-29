@@ -11,7 +11,5 @@ create table series (
     primary key (id)
 );
 
-alter table if exists series
-    add constraint FK1qx5l532ouca7x77w1gfaujh9
-    foreign key (exercise_series_id)
-    references exercise_series;
+alter table series
+add constraint FK1qx5l532ouca7x77w1gfaujh9 foreign key (exercise_series_id) references exercise_series;
