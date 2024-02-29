@@ -52,6 +52,10 @@ public final class ExerciseSeries implements Serializable {
     @Column(name = "end_series")
     private final ZonedDateTime endSeries;
 
+    @With
+    @Column(name = "rest_time")
+    private final RestTime restTime;
+
     @Embedded
     private final AuditFields auditFields;
 
@@ -59,7 +63,8 @@ public final class ExerciseSeries implements Serializable {
             Exercise exercise,
             List<Series> series,
             ZonedDateTime start,
-            ZonedDateTime end
+            ZonedDateTime end,
+            RestTime restTime
     ) {
         return new ExerciseSeries(
                 null,
@@ -67,6 +72,7 @@ public final class ExerciseSeries implements Serializable {
                 series,
                 start,
                 end,
+                restTime,
                 new AuditFields()
         );
     }

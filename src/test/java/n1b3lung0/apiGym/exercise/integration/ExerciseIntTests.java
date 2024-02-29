@@ -1,5 +1,6 @@
 package n1b3lung0.apiGym.exercise.integration;
 
+import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.BaseIntegrationTest;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
 import n1b3lung0.apiGym.common.application.utils.uuid.UUIDUtils;
@@ -13,6 +14,7 @@ import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdater;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotFound;
+import n1b3lung0.apiGym.exercise.mother.CategoryMother;
 import n1b3lung0.apiGym.exercise.mother.ExerciseMother;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,8 +25,10 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,7 +64,11 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
     @BeforeEach
     private void setUp() {
-        exercise = ExerciseMother.random().id(null).build();
+        Category category1 = CategoryMother.random().build();
+        Category category2 = CategoryMother.random().build();
+        exercise = ExerciseMother.random()
+                .id(null)
+                .build();
         em.persist(exercise);
     }
 
@@ -144,7 +152,6 @@ class ExerciseIntTests extends BaseIntegrationTest {
                 String.valueOf(updatedExercise.getId()),
                 null,
                 updatedExercise.getDescription(),
-                null,
                 null,
                 null,
                 null

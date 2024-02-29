@@ -38,9 +38,6 @@ public class ExerciseCreateRequest {
     @Schema(description = "Video del ejercicio")
     private String video;
 
-    @Schema(description = "Tiempo de descanso del ejercicio entre series")
-    private RestTime restTime;
-
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)
     @Max(value = 10, message = ExceptionConstants.EXERCISE_INTENSITY_MAX)
@@ -54,7 +51,6 @@ public class ExerciseCreateRequest {
             String description,
             String image,
             String video,
-            RestTime restTime,
             Integer intensity
     ) {
         return Exercise.create(
@@ -62,7 +58,6 @@ public class ExerciseCreateRequest {
                 description,
                 image,
                 video,
-                restTime,
                 intensity
         );
     }
@@ -73,7 +68,6 @@ public class ExerciseCreateRequest {
                 exercise.getDescription(),
                 exercise.getImage(),
                 exercise.getVideo(),
-                exercise.getRestTime(),
                 exercise.getIntensity(),
                 exercise.getCategories().stream()
                         .map(category -> category.getId().toString())

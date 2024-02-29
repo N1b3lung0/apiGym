@@ -59,10 +59,6 @@ public final class Exercise implements Serializable {
     private final String video; // TODO: Un video tiene más que URL
 
     @With
-    @Column(name = "rest_time")
-    private final RestTime restTime; // TODO: En realidad tiene que ir en ExerciseSeries
-
-    @With
     @Column(name = "intensity")
     private final Integer intensity;
 
@@ -101,7 +97,6 @@ public final class Exercise implements Serializable {
             String description,
             String image,
             String video,
-            RestTime restTime,
             Integer intensity
     ) {
         return new Exercise(
@@ -110,7 +105,6 @@ public final class Exercise implements Serializable {
                 description,
                 image,
                 video,
-                restTime,
                 intensity,
                 new HashSet<>(),
                 Boolean.FALSE,

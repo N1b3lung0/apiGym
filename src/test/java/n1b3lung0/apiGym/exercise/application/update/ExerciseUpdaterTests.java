@@ -45,7 +45,6 @@ class ExerciseUpdaterTests extends BaseUnitTest {
                 updatedExercise.getDescription(),
                 null,
                 null,
-                null,
                 null
         );
 

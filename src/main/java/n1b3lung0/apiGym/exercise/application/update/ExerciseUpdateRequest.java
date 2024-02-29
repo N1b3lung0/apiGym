@@ -35,9 +35,6 @@ public class ExerciseUpdateRequest {
     @Schema(description = "Nuevo video del ejercicio")
     private String video;
 
-    @Schema(description = "Nuevo tiempo de descanso del ejercicio entre series")
-    private RestTime restTime;
-
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)
     @Max(value = 10, message = ExceptionConstants.EXERCISE_INTENSITY_MAX)

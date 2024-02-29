@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.category.application.find.CategoryResponse;
-import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
-import n1b3lung0.apiGym.exercise.domain.RestTime;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
@@ -36,9 +34,6 @@ public class ExerciseResponse {
 
     @Schema(description = "Video del ejercicio")
     private String video;
-
-    @Schema(description = "Tiempo de descanso del ejercicio entre series")
-    private RestTime restTime;
 
     @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
     private Integer intensity;
@@ -69,7 +64,6 @@ public class ExerciseResponse {
                 exercise.getDescription(),
                 exercise.getImage(),
                 exercise.getVideo(),
-                exercise.getRestTime(),
                 exercise.getIntensity(),
                 exercise.getCategories().stream().map(CategoryResponse::fromCategory).collect(Collectors.toSet()),
                 exercise.getAuditFields().getCreatedAt(),

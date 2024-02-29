@@ -8,7 +8,6 @@ import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseChange;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
-import n1b3lung0.apiGym.exercise.domain.RestTime;
 import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotValid;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +29,6 @@ public class ExerciseUpdater {
     private static final String DESCRIPTION_FIELD = "description";
     private static final String IMAGE_FIELD = "image";
     private static final String VIDEO_FIELD = "video";
-    private static final String REST_TIME_FIELD = "restTime";
     private static final String INTENSITY_FIELD = "intensity";
 
     @Transactional
@@ -66,12 +64,6 @@ public class ExerciseUpdater {
             changes.add(ExerciseChange.create(VIDEO_FIELD, exercise.getVideo()));
         }
 
-        RestTime restTime = request.getRestTime();
-        if (restTime != null && !restTime.equals(exercise.getRestTime())) {
-            exercise = exercise.withRestTime(restTime);
-            changes.add(ExerciseChange.create(REST_TIME_FIELD, exercise.getRestTime()));
-        }
-
         Integer intensity = request.getIntensity();
         if (intensity != null && !intensity.equals(exercise.getIntensity())) {
             exercise = exercise.withIntensity(intensity);
@@ -85,5 +77,4 @@ public class ExerciseUpdater {
 
         return exercise;
     }
-
 }

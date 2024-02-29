@@ -4,9 +4,7 @@ import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import n1b3lung0.apiGym.common.mother.MotherCreator;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
-import n1b3lung0.apiGym.exercise.domain.RestTime;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +20,6 @@ public final class ExerciseMother {
             String description,
             String image,
             String video,
-            RestTime restTime,
             Integer intensity,
             Set<Category> categories,
             AuditFields auditFields
@@ -33,7 +30,6 @@ public final class ExerciseMother {
                 .description(description)
                 .image(image)
                 .video(video)
-                .restTime(restTime)
                 .intensity(intensity)
                 .deleted(Boolean.FALSE)
                 .categories(categories)
@@ -46,7 +42,6 @@ public final class ExerciseMother {
                 MotherCreator.random().book().title(),
                 MotherCreator.random().internet().image(),
                 MotherCreator.random().internet().url(),
-                RestTimeMother.random(),
                 MotherCreator.random().number().numberBetween(1, 10),
                 new HashSet<>(),
                 new AuditFields()
