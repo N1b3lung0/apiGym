@@ -1,4 +1,4 @@
-package n1b3lung0.apiGym.exercise.domain;
+package n1b3lung0.apiGym.common.domain.vo;
 
 import jakarta.persistence.Embeddable;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Embeddable
-public final class Image implements Serializable {
+public final class Video implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
@@ -17,12 +17,12 @@ public final class Image implements Serializable {
     private final String description;
     private final String url;
 
-    public Image() {
+    public Video() {
         this.name = null;
         this.description = null;
         this.url = null;
     }
-    public Image(String name, String description, String url) {
+    public Video(String name, String description, String url) {
         this.name = name;
         this.description = description;
         this.url = url;

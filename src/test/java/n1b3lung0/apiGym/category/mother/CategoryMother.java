@@ -1,4 +1,4 @@
-package n1b3lung0.apiGym.exercise.mother;
+package n1b3lung0.apiGym.category.mother;
 
 import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;

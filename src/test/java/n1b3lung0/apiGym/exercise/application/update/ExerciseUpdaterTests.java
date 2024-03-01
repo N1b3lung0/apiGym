@@ -1,5 +1,6 @@
 package n1b3lung0.apiGym.exercise.application.update;
 
+import n1b3lung0.apiGym.category.domain.CategoryRepository;
 import n1b3lung0.apiGym.common.BaseUnitTest;
 import n1b3lung0.apiGym.exercise.application.find.ExerciseFinder;
 import n1b3lung0.apiGym.exercise.domain.ExerciseChange;
@@ -26,6 +27,9 @@ class ExerciseUpdaterTests extends BaseUnitTest {
     @MockBean
     private ExerciseRepository repository;
 
+    @MockBean
+    private CategoryRepository categoryRepository;
+
     @Test
     void shouldUpdateAnExerciseByIdIfOnlyOneFieldHasBeenModified() {
 
@@ -43,6 +47,7 @@ class ExerciseUpdaterTests extends BaseUnitTest {
                 String.valueOf(updatedExercise.getId()),
                 null,
                 updatedExercise.getDescription(),
+                null,
                 null,
                 null,
                 null

@@ -9,8 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.common.application.utils.exception.ExceptionConstants;
-import n1b3lung0.apiGym.exercise.domain.Image;
-import n1b3lung0.apiGym.exercise.domain.Video;
+import n1b3lung0.apiGym.common.domain.vo.Image;
+import n1b3lung0.apiGym.common.domain.vo.Video;
 
 import java.util.Set;
 

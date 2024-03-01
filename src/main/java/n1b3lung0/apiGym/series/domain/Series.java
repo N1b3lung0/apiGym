@@ -1,4 +1,4 @@
-package n1b3lung0.apiGym.exercise.domain;
+package n1b3lung0.apiGym.series.domain;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.With;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
+import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 
 import java.io.Serial;
 import java.io.Serializable;

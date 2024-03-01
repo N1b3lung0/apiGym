@@ -1,6 +1,6 @@
-package n1b3lung0.apiGym.exercise.mother;
+package n1b3lung0.apiGym.exercise_series.mother;
 
-import n1b3lung0.apiGym.exercise.domain.RestTime;
+import n1b3lung0.apiGym.exercise_series.domain.RestTime;
 
 import java.util.Arrays;
 import java.util.List;

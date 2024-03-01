@@ -8,8 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import n1b3lung0.apiGym.category.application.find.CategoryResponse;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
-import n1b3lung0.apiGym.exercise.domain.Image;
-import n1b3lung0.apiGym.exercise.domain.Video;
+import n1b3lung0.apiGym.common.domain.vo.Image;
+import n1b3lung0.apiGym.common.domain.vo.Video;
 
 import java.time.ZonedDateTime;
 import java.util.Set;

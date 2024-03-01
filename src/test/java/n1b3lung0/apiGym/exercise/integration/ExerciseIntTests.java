@@ -14,7 +14,7 @@ import n1b3lung0.apiGym.exercise.application.update.ExerciseUpdater;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.domain.exception.ExerciseNotFound;
-import n1b3lung0.apiGym.exercise.mother.CategoryMother;
+import n1b3lung0.apiGym.category.mother.CategoryMother;
 import n1b3lung0.apiGym.exercise.mother.ExerciseMother;
 import n1b3lung0.apiGym.exercise.rest.ExerciseController;
 import org.junit.jupiter.api.BeforeEach;
@@ -150,6 +150,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
                 String.valueOf(updatedExercise.getId()),
                 null,
                 updatedExercise.getDescription(),
+                null,
                 null,
                 null,
                 null

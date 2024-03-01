@@ -21,6 +21,8 @@ import lombok.ToString;
 import lombok.With;
 import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
+import n1b3lung0.apiGym.common.domain.vo.Image;
+import n1b3lung0.apiGym.common.domain.vo.Video;
 
 import java.io.Serial;
 import java.io.Serializable;
