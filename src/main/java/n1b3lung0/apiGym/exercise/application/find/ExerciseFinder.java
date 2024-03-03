@@ -20,7 +20,7 @@ public class ExerciseFinder {
 
     @Transactional(readOnly = true)
     public Exercise findById(String id) {
-        return repository.findByIdAndDeletedFalse(UUIDUtils.fromString(id))
+        return repository.findByIdAndActiveTrue(UUIDUtils.fromString(id))
                 .orElseThrow(() -> new ExerciseNotFound(id));
     }
 

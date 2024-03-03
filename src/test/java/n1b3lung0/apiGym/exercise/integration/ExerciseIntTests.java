@@ -30,6 +30,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -90,7 +91,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
         var actual = assertThrows(IllegalArgumentException.class, () -> finder.findById(null));
 
-        verify(repository, never()).findByIdAndDeletedFalse(any());
+        verify(repository, never()).findByIdAndActiveTrue(any());
         assertEquals(expected, actual.getMessage());
     }
 
@@ -99,7 +100,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
 
         var id = UUID.randomUUID();
         var expected = String.format(ExceptionConstants.EXERCISE_NOT_FOUND, id);
-        when(repository.findByIdAndDeletedFalse(id)).thenReturn(Optional.empty());
+        when(repository.findByIdAndActiveTrue(id)).thenReturn(Optional.empty());
 
         var actual = assertThrows(ExerciseNotFound.class, () -> finder.findById(String.valueOf(id)));
         assertEquals(expected, actual.getMessage());
@@ -175,6 +176,6 @@ class ExerciseIntTests extends BaseIntegrationTest {
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
         assertNull(response.getBody());
         var actual = em.find(Exercise.class, exercise.getId());
-        assertTrue(actual.isDeleted());
+        assertFalse(actual.isActive());
     }
 }

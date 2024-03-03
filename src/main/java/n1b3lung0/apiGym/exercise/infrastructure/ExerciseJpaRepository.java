@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public interface ExerciseJpaRepository extends ExerciseRepository, JpaRepository<Exercise, UUID>, JpaSpecificationExecutor<Exercise> {
 
-    Optional<Exercise> findByIdAndDeletedFalse(UUID id);
+    Optional<Exercise> findByIdAndActiveTrue(UUID id);
 
     default Page<Exercise> find(ExerciseSearchCriteria criteria) {
         org.springframework.data.domain.Page<Exercise> page = findAll(

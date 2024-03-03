@@ -72,8 +72,8 @@ public final class Exercise implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private final Set<Category> categories;
 
-    @With(AccessLevel.PRIVATE) @Column(name = "deleted")
-    private final boolean deleted; // TODO: Cambiar por active y filtrar que no salgan los active= false
+    @With(AccessLevel.PRIVATE) @Column(name = "active")
+    private final boolean active;
 
     @With(AccessLevel.PRIVATE) @Column(name = "deleted_at")
     private final ZonedDateTime deletedAt;
@@ -99,7 +99,7 @@ public final class Exercise implements Serializable {
                 video,
                 intensity,
                 new HashSet<>(),
-                Boolean.FALSE,
+                Boolean.TRUE,
                 null,
                 null,
                 new AuditFields()
@@ -107,7 +107,7 @@ public final class Exercise implements Serializable {
     }
 
     public Exercise delete() {
-        return withDeleted(Boolean.TRUE)
+        return withActive(Boolean.FALSE)
                 .withDeletedAt(ZonedDateTime.now())
                 .withDeletedBy("n1b3lung0");
     }

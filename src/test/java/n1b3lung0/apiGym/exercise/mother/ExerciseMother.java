@@ -35,7 +35,7 @@ public final class ExerciseMother {
                 .image(image)
                 .video(video)
                 .intensity(intensity)
-                .deleted(Boolean.FALSE)
+                .active(Boolean.TRUE)
                 .categories(categories)
                 .auditFields(auditFields);
     }

@@ -28,7 +28,7 @@ public class ExerciseCreator {
     public Exercise create(ExerciseCreateRequest request) {
 
         String name = request.getName();
-        if(repository.findByName(name).isPresent()) {
+        if (repository.findByName(name).isPresent()) {
             throw new ExerciseAlreadyExists(name);
         }
 
@@ -52,7 +52,8 @@ public class ExerciseCreator {
 
     private Exercise addCategories(Exercise exercise, Set<String> categoryIds) {
         Set<Category> categories = categoryIds.stream()
-                .map(id -> categoryRepository.findByIdAndDeletedFalse(UUID.fromString(id)).orElseThrow(() -> new CategoryNotFound(id)))
+                .map(id -> categoryRepository.findByIdAndDeletedFalse(UUID.fromString(id))
+                        .orElseThrow(() -> new CategoryNotFound(id)))
                 .collect(Collectors.toSet());
         return exercise.withCategories(categories);
     }

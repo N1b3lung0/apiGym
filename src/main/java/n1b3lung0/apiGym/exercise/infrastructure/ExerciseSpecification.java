@@ -19,11 +19,11 @@ public final class ExerciseSpecification {
             spec = spec.and(byName.or(byDescription));
         }
 
-        return spec.and(notDeleted());
+        return spec.and(active());
     }
 
-    private static Specification<Exercise> notDeleted() {
-        return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(criteriaBuilder.coalesce().value(root.get("deleted")), Boolean.FALSE));
+    private static Specification<Exercise> active() {
+        return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(criteriaBuilder.coalesce().value(root.get("active")), Boolean.TRUE));
     }
 
     private static Specification<Exercise> byFieldValueLike(String field, String value) {

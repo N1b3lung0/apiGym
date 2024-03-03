@@ -11,7 +11,7 @@ create table exercises (
    video_description varchar(255),
    video_url varchar(255),
    intensity integer,
-   deleted boolean,
+   active boolean,
    created_at timestamp(6) with time zone,
    created_by varchar(255),
    updated_at timestamp(6) with time zone,

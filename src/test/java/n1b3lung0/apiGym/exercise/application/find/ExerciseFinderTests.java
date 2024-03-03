@@ -27,11 +27,11 @@ class ExerciseFinderTests extends BaseUnitTest {
     private ExerciseRepository repository;
 
     @Test
-    void shouldFindAnExerciseByIdIfNotDeleted() {
+    void shouldFindAnExerciseByIdIfActive() {
 
         var expected = ExerciseMother.random().build();
 
-        when(repository.findByIdAndDeletedFalse(expected.getId())).thenReturn(Optional.of(expected));
+        when(repository.findByIdAndActiveTrue(expected.getId())).thenReturn(Optional.of(expected));
 
         var actual = finder.findById(String.valueOf(expected.getId()));
 
@@ -43,7 +43,7 @@ class ExerciseFinderTests extends BaseUnitTest {
 
         var id = UUID.randomUUID();
 
-        when(repository.findByIdAndDeletedFalse(id)).thenReturn(Optional.empty());
+        when(repository.findByIdAndActiveTrue(id)).thenReturn(Optional.empty());
 
         var actual = assertThrows(ExerciseNotFound.class, () -> finder.findById(String.valueOf(id)));
 
@@ -53,9 +53,9 @@ class ExerciseFinderTests extends BaseUnitTest {
     @Test
     void shouldFailIfExerciseIsDeleted() {
 
-        var exercise = ExerciseMother.random().deleted(Boolean.TRUE).build();
+        var exercise = ExerciseMother.random().active(Boolean.FALSE).build();
 
-        when(repository.findByIdAndDeletedFalse(exercise.getId())).thenReturn(Optional.empty());
+        when(repository.findByIdAndActiveTrue(exercise.getId())).thenReturn(Optional.empty());
 
         var actual = assertThrows(ExerciseNotFound.class, () -> finder.findById(String.valueOf(exercise.getId())));
 
