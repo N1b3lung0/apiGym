@@ -45,23 +45,29 @@ public class ExerciseController extends BaseRestController {
     private final ExerciseUpdater updater;
     private final ExerciseDeleter deleter;
 
+    private static final String FIND_BY_ID = "Find an exercise by its unique id";
+    private static final String FIND_BY_CRITERIA = "Get a filtered, sorted and paginated list of exercises";
+    private static final String CREATE = "Create an exercise";
+    private static final String UPDATE = "Update a given exercise";
+    private static final String DELETE = "Delete a given exercise";
+
     @OkRes @NotFoundRes @SecurityRes
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Find an exercise by its unique id", description = "Find an exercise by its unique id")
+    @Operation(summary = FIND_BY_ID, description = FIND_BY_ID)
     public ResponseEntity<ExerciseResponse> findById(@PathVariable String id) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(finder.findById(id)));
     }
 
     @OkRes @SecurityRes
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Get a filtered, sorted and paginated list of exercises", description = "Get a filtered, sorted and paginated list of exercises")
+    @Operation(summary = FIND_BY_CRITERIA, description = FIND_BY_CRITERIA)
     public ResponseEntity<PageResponse<ExerciseResponse>> findByCriteria(@Valid ExerciseFindRequest request) {
         return ResponseEntity.ok(finder.find(request));
     }
 
     @CreatedRes @SecurityRes
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Create an exercise", description = "Create an exercise")
+    @Operation(summary = CREATE, description = CREATE)
     public ResponseEntity<Void> create(@RequestBody @Valid ExerciseCreateRequest request) {
         Exercise saved = creator.create(request);
         URI location = UriComponentsBuilder.fromPath("/api/exercises/{id}").buildAndExpand(saved.getId()).toUri();
@@ -70,14 +76,14 @@ public class ExerciseController extends BaseRestController {
 
     @OkRes @NotFoundRes @SecurityRes
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Update a given exercise", description = "Update a given exercise")
+    @Operation(summary = UPDATE, description = UPDATE)
     public ResponseEntity<ExerciseResponse> update(@Valid @RequestBody ExerciseUpdateRequest request) {
         return ResponseEntity.ok(ExerciseResponse.fromExercise(updater.updateFields(request)));
     }
 
     @NoContentRes @NotFoundRes @SecurityRes
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Delete a given exercise", description = "Delete a given exercise")
+    @Operation(summary = DELETE, description = DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
         deleter.delete(id);
         return ResponseEntity.noContent().build();

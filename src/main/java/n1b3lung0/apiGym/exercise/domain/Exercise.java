@@ -42,59 +42,43 @@ public final class Exercise implements Serializable {
     @Serial
     private static final long serialVersionUID = -1L;
 
-    @With
-    @Id @GeneratedValue
+    @With @Id @GeneratedValue
     private final UUID id;
 
-    @With
-    @Column(name = "name", nullable = false, unique = true)
+    @With @Column(name = "name", nullable = false, unique = true)
     private final String name;
 
-    @With
-    @Column(name = "description")
+    @With @Column(name = "description")
     private final String description;
 
-    @With
-    @Embedded
-    @AttributeOverrides({
+    @With @Embedded @AttributeOverrides({
             @AttributeOverride(name = "name", column = @Column(name = "image_name")),
             @AttributeOverride(name = "description", column = @Column(name = "image_description")),
-            @AttributeOverride(name = "url", column = @Column(name = "image_url"))
-    })
+            @AttributeOverride(name = "url", column = @Column(name = "image_url"))})
     private final Image image;
 
-    @With
-    @Embedded
-    @AttributeOverrides({
+    @With @Embedded @AttributeOverrides({
             @AttributeOverride(name = "name", column = @Column(name = "video_name")),
             @AttributeOverride(name = "description", column = @Column(name = "video_description")),
-            @AttributeOverride(name = "url", column = @Column(name = "video_url"))
-    })
+            @AttributeOverride(name = "url", column = @Column(name = "video_url"))})
     private final Video video;
 
-    @With
-    @Column(name = "intensity")
+    @With @Column(name = "intensity")
     private final Integer intensity;
 
-    @With
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToMany
-    @JoinTable(name = "exercises_categories",
+    @With @ToString.Exclude @EqualsAndHashCode.Exclude
+    @ManyToMany @JoinTable(name = "exercises_categories",
         joinColumns = {@JoinColumn(name = "exercise_id")},
         inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private final Set<Category> categories;
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted")
+    @With(AccessLevel.PRIVATE) @Column(name = "deleted")
     private final boolean deleted; // TODO: Cambiar por active y filtrar que no salgan los active= false
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted_at")
+    @With(AccessLevel.PRIVATE) @Column(name = "deleted_at")
     private final ZonedDateTime deletedAt;
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted_by")
+    @With(AccessLevel.PRIVATE) @Column(name = "deleted_by")
     private final String deletedBy;
 
     @Embedded

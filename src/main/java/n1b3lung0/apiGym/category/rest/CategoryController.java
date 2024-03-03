@@ -45,22 +45,28 @@ public class CategoryController extends BaseRestController {
     private final CategoryUpdater updater;
     private final CategoryDeleter deleter;
 
-    @OkRes @SecurityRes
+    private static final String FIND_BY_ID = "Find a category by its unique id";
+    private static final String FIND_BY_CRITERIA = "Get a filtered, sorted and paginated list of categories";
+    private static final String CREATE = "Create a category";
+    private static final String UPDATE = "Update a given category";
+    private static final String DELETE = "Delete a given category";
+
+    @OkRes @NotFoundRes @SecurityRes
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Find a category by its unique id", description = "Find a category by its unique id")
+    @Operation(summary = FIND_BY_ID, description = FIND_BY_ID)
     public ResponseEntity<CategoryResponse> findById(@PathVariable String id) {
         return ResponseEntity.ok(CategoryResponse.fromCategory(finder.findById(id)));
     }
     @OkRes @SecurityRes
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Get a filtered, sorted and paginated list of categories", description = "Get a filtered, sorted and paginated list of categories")
+    @Operation(summary = FIND_BY_CRITERIA, description = FIND_BY_CRITERIA)
     public ResponseEntity<PageResponse<CategoryResponse>> findByCriteria(@Valid CategoryFindRequest request) {
         return ResponseEntity.ok(finder.find(request));
     }
 
     @CreatedRes @SecurityRes
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Create a category", description = "Create a category")
+    @Operation(summary = CREATE, description = CREATE)
     public ResponseEntity<Void> create(@RequestBody @Valid CategoryCreateRequest request) {
         Category saved = creator.create(request);
         URI location = UriComponentsBuilder.fromPath("/api/categories/{id}").buildAndExpand(saved.getId()).toUri();
@@ -69,14 +75,14 @@ public class CategoryController extends BaseRestController {
 
     @OkRes @NotFoundRes @SecurityRes
     @PatchMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Update a given category", description = "Update a given category")
+    @Operation(summary = UPDATE, description = UPDATE)
     public ResponseEntity<CategoryResponse> update(@RequestBody @Valid CategoryUpdateRequest request) {
         return ResponseEntity.ok(CategoryResponse.fromCategory(updater.updateFields(request)));
     }
 
     @NoContentRes @NotFoundRes @SecurityRes
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Delete a given category", description = "Delete a given category")
+    @Operation(summary = DELETE, description = DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
         deleter.delete(id);
         return ResponseEntity.noContent().build();
