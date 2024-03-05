@@ -118,9 +118,9 @@ class ExerciseIntTests extends BaseIntegrationTest {
         assertNull(actual.getBody());
         var actualLocation = actual.getHeaders().getLocation();
         var actualId = Objects.requireNonNull(actualLocation)
-                .getPath().replace("/api/exercises/", "");
+                .getPath().replace("/exercises/", "");
         assertTrue(StringUtils.isNotBlank(actualId));
-        var expectedLocation = UriComponentsBuilder.fromPath("/api/exercises/{id}")
+        var expectedLocation = UriComponentsBuilder.fromPath("/exercises/{id}")
                 .buildAndExpand(UUIDUtils.fromString(actualId)).toUri();
         assertEquals(expectedLocation, actualLocation);
         var actualUUID = UUID.fromString(actualId);

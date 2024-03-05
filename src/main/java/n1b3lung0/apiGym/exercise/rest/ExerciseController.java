@@ -36,7 +36,7 @@ import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/exercises")
+@RequestMapping("/exercises")
 @Tag(name = "Exercises", description = "Endpoints to perform operations with exercises")
 public class ExerciseController extends BaseRestController {
 
@@ -70,7 +70,7 @@ public class ExerciseController extends BaseRestController {
     @Operation(summary = CREATE, description = CREATE)
     public ResponseEntity<Void> create(@RequestBody @Valid ExerciseCreateRequest request) {
         Exercise saved = creator.create(request);
-        URI location = UriComponentsBuilder.fromPath("/api/exercises/{id}").buildAndExpand(saved.getId()).toUri();
+        URI location = UriComponentsBuilder.fromPath("/exercises/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 

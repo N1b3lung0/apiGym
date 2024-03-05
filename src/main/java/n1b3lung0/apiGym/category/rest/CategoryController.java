@@ -36,7 +36,7 @@ import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 @Tag(name = "Categories", description = "Endpoints to perform operations with categories")
 public class CategoryController extends BaseRestController {
 
@@ -69,7 +69,7 @@ public class CategoryController extends BaseRestController {
     @Operation(summary = CREATE, description = CREATE)
     public ResponseEntity<Void> create(@RequestBody @Valid CategoryCreateRequest request) {
         Category saved = creator.create(request);
-        URI location = UriComponentsBuilder.fromPath("/api/categories/{id}").buildAndExpand(saved.getId()).toUri();
+        URI location = UriComponentsBuilder.fromPath("/categories/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
