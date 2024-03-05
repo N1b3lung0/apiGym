@@ -5,6 +5,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -16,6 +17,7 @@ import lombok.With;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.series.domain.Series;
+import n1b3lung0.apiGym.workout.domain.Workout;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -38,13 +40,16 @@ public final class ExerciseSeries implements Serializable {
     @Id @GeneratedValue
     private final UUID id;
 
+    @ManyToOne
+    private final Workout workout;
+
     @OneToOne
     private final Exercise exercise;
 
     @OneToMany(mappedBy = "exerciseSeries")
     private final List<Series> series;
 
-    // TODO: Meter aquí el weight
+    private final Float weight;
 
     @With
     @Column(name = "start_series")
@@ -62,18 +67,22 @@ public final class ExerciseSeries implements Serializable {
     private final AuditFields auditFields;
 
     public static ExerciseSeries create(
+            Workout workout,
             Exercise exercise,
             List<Series> series,
-            ZonedDateTime start,
-            ZonedDateTime end,
+            Float weight,
+            ZonedDateTime startSeries,
+            ZonedDateTime endSeries,
             RestTime restTime
     ) {
         return new ExerciseSeries(
                 null,
+                workout,
                 exercise,
                 series,
-                start,
-                end,
+                weight,
+                startSeries,
+                endSeries,
                 restTime,
                 new AuditFields()
         );
