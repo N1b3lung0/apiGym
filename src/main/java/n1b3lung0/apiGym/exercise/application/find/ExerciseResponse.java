@@ -67,7 +67,10 @@ public class ExerciseResponse {
                 exercise.getImage(),
                 exercise.getVideo(),
                 exercise.getIntensity(),
-                exercise.getCategories().stream().map(CategoryResponse::fromCategory).collect(Collectors.toSet()),
+                exercise.getCategories().stream()
+                        .filter(category -> !category.isDeleted())
+                        .map(CategoryResponse::fromCategory)
+                        .collect(Collectors.toSet()),
                 exercise.getAuditFields().getCreatedAt(),
                 exercise.getAuditFields().getCreatedBy(),
                 exercise.getAuditFields().getUpdatedAt(),
