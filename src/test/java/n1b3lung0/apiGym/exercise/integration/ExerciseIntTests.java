@@ -62,7 +62,7 @@ class ExerciseIntTests extends BaseIntegrationTest {
     private Exercise exercise;
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
         Category category1 = CategoryMother.random().build();
         Category category2 = CategoryMother.random().build();
         exercise = ExerciseMother.random()

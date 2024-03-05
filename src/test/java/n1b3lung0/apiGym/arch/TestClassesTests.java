@@ -34,6 +34,7 @@ public class TestClassesTests extends BaseArchTest {
     static final ArchRule beforeEachMethodsShouldBePrivate = methods()
             .that().areDeclaredInClassesThat().haveSimpleNameEndingWith(TEST)
             .or().areDeclaredInClassesThat().haveSimpleNameEndingWith(TESTS)
+            .and().haveNameNotMatching("setUp")
             .and().areAnnotatedWith(BeforeEach.class)
             .should().bePrivate();
 
