@@ -1,5 +1,6 @@
 package n1b3lung0.apiGym.series.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,10 +37,13 @@ public final class Series implements Serializable {
     @ManyToOne
     private final ExerciseSeries exerciseSeries;
 
+    @With @Column(name = "serial_number")
     private final Integer serialNumber;
 
+    @With @Column(name = "repetitions_to_do")
     private final Integer repetitionsToDo;
 
+    @With @Column(name = "repetitions_done")
     private final Integer repetitionsDone;
 
     @Embedded
