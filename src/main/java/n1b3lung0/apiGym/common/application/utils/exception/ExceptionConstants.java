@@ -33,4 +33,7 @@ public final class ExceptionConstants {
     public static final String CATEGORY_NAME_LENGTH_NOT_VALID = "Name category must be between {min} and {max} characters long";
     public static final String CATEGORY_NOT_VALID = "Category '%s' is not valid. Reason: '%s'";
     public static final String CATEGORY_REPEATED = "A category with name %s has already been created";
+
+    // SERIES
+    public static final String SERIES_NOT_FOUND = "A series with ID '%s' could not be found";
 }

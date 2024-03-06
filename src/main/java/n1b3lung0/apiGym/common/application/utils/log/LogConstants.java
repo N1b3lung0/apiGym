@@ -14,4 +14,9 @@ public final class LogConstants {
     public static final String CATEGORY_CREATED = "New category created: %s";
     public static final String CATEGORY_UPDATED = "Category updated: %s";
     public static final String CATEGORY_DELETED = "Category deleted: %s";
+
+    // SERIES
+    public static final String SERIES_CREATED = "New series created: %s";
+    public static final String SERIES_UPDATED = "Series updated: %s";
+    public static final String SERIES_DELETED = "Series deleted: %s";
 }
