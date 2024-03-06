@@ -13,7 +13,7 @@ class AuditFieldsPreUpdateListenerTests extends BaseIntegrationTest {
     private String username;
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
         username = "n1b3lung0";
     }
 

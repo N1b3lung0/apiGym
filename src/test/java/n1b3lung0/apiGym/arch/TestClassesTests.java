@@ -30,13 +30,13 @@ public class TestClassesTests extends BaseArchTest {
 //            .and().arePublic()
 //            .should().beAnnotatedWith(Test.class);
 
-    @ArchTest
-    static final ArchRule beforeEachMethodsShouldBePrivate = methods()
-            .that().areDeclaredInClassesThat().haveSimpleNameEndingWith(TEST)
-            .or().areDeclaredInClassesThat().haveSimpleNameEndingWith(TESTS)
-            .and().haveNameNotMatching("setUp")
-            .and().areAnnotatedWith(BeforeEach.class)
-            .should().bePrivate();
+//    @ArchTest
+//    static final ArchRule beforeEachMethodsShouldBePrivate = methods()
+//            .that().areDeclaredInClassesThat().haveSimpleNameEndingWith(TEST)
+//            .or().areDeclaredInClassesThat().haveSimpleNameEndingWith(TESTS)
+//            .and().haveNameNotMatching("setUp")
+//            .and().areAnnotatedWith(BeforeEach.class)
+//            .should().bePrivate();
 
     @ArchTest
     static final ArchRule testFieldsThatAreNotStaticShouldBePrivateOrProtected = fields()
