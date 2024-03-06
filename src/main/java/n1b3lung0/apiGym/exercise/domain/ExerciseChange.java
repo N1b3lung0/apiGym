@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Builder
 @RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-public class ExerciseChange implements Serializable {
+public final class ExerciseChange implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;

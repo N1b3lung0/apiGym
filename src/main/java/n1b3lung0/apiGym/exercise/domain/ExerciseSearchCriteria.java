@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class ExerciseSearchCriteria extends Criteria implements Serializable {
+public final class ExerciseSearchCriteria extends Criteria implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
