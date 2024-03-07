@@ -1,5 +1,6 @@
 package n1b3lung0.apiGym.workout.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +33,7 @@ public final class Workout implements Serializable {
     @Serial
     private static final long serialVersionUID = -1L;
 
-    @With
-    @Id @GeneratedValue
+    @With @Id @GeneratedValue
     private final UUID id;
 
     @OneToMany(mappedBy = "workout")
@@ -42,8 +42,10 @@ public final class Workout implements Serializable {
     //@ManyToOne
     //private final Trainee trainee; @OneToMany(mappedBy = "trainee")
 
+    @With @Column(name = "start_workout")
     private final ZonedDateTime startWorkout;
 
+    @With @Column(name = "end_workout")
     private final ZonedDateTime endWorkout;
 
     @Embedded
