@@ -55,7 +55,7 @@ public class WorkoutController extends BaseRestController {
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = FIND_BY_ID, description = FIND_BY_ID)
     public ResponseEntity<WorkoutResponse> findById(@PathVariable String id) {
-        return ResponseEntity.ok().build(); // TODO: ResponseEntity.ok(WorkoutResponse.fromWorkout(finder.findById(id)));
+        return ResponseEntity.ok(WorkoutResponse.fromWorkout(finder.findById(id)));
     }
 
     @OkRes @SecurityRes
