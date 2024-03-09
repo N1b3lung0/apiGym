@@ -69,7 +69,7 @@ public class WorkoutController extends BaseRestController {
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = CREATE, description = CREATE)
     public ResponseEntity<Void> create(@RequestBody @Valid WorkoutCreateRequest request) {
-        Workout saved = Workout.builder().build(); // TODO: creator.create(request);
+        Workout saved = creator.create(request);
         URI location = UriComponentsBuilder.fromPath("/workouts/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
@@ -85,7 +85,7 @@ public class WorkoutController extends BaseRestController {
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = DELETE, description = DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
-        // TODO: deleter.delete(id);
+        deleter.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
