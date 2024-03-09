@@ -19,29 +19,29 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "Solicitud de creación de un ejercicio")
+@Schema(description = "Exercise create request")
 public class ExerciseCreateRequest {
 
     @NotBlank
     @Size(min = 4, max = 255, message = ExceptionConstants.EXERCISE_NAME_LENGTH_NOT_VALID)
-    @Schema(description = "Nombre del ejercicio")
+    @Schema(description = "Exercise name")
     private String name;
 
-    @Schema(description = "Descripción del ejercicio")
+    @Schema(description = "Exercise description")
     private String description;
 
-    @Schema(description = "Imagen del ejercicio")
+    @Schema(description = "Exercise image")
     private Image image;
 
-    @Schema(description = "Video del ejercicio")
+    @Schema(description = "Exercise video")
     private Video video;
 
-    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
+    @Schema(description = "Exercise intensity, from 1 to 10")
     @Min(value = 1, message = ExceptionConstants.EXERCISE_INTENSITY_MIN)
     @Max(value = 10, message = ExceptionConstants.EXERCISE_INTENSITY_MAX)
     private Integer intensity;
 
-    @Schema(description = "Categorías a las que pertenece el ejercicio")
+    @Schema(description = "Categories which the exercise belongs")
     private Set<String> categoryIds;
 
     public Exercise toExercise(

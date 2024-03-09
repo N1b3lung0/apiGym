@@ -19,44 +19,44 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Schema(description = "Ejercicio/s que cumple/n el criterio de búsqueda")
+@Schema(description = "Exercise response")
 public class ExerciseResponse {
 
-    @Schema(description = "Identificador único del ejercicio")
+    @Schema(description = "Exercise UUID")
     private String id;
 
-    @Schema(description = "Nombre del ejercicio")
+    @Schema(description = "Exercise name")
     private String name;
 
-    @Schema(description = "Descripción del ejercicio")
+    @Schema(description = "Exercise description")
     private String description;
 
-    @Schema(description = "Imagen del ejercicio")
+    @Schema(description = "Exercise image")
     private Image image;
 
-    @Schema(description = "Video del ejercicio")
+    @Schema(description = "Exercise video")
     private Video video;
 
-    @Schema(description = "Intensidad con la que se ha hecho el ejercicio, de 1 a 10")
+    @Schema(description = "Exercise intensity, from 1 to 10")
     private Integer intensity;
 
-    @Schema(description = "Categorías a las que pertenece el ejercicio")
+    @Schema(description = "Categories which the exercise belongs")
     private Set<CategoryResponse> categories;
 
     @EqualsAndHashCode.Exclude
-    @Schema(description = "Fecha de creación del ejercicio")
+    @Schema(description = "When the exercise was created")
     private ZonedDateTime createdAt;
 
     @EqualsAndHashCode.Exclude
-    @Schema(description = "Quién creó el ejercicio")
+    @Schema(description = "Who created the exercise")
     private String createdBy;
 
     @EqualsAndHashCode.Exclude
-    @Schema(description = "Fecha de actualización del ejercicio")
+    @Schema(description = "When the exercise was updated")
     private ZonedDateTime updatedAt;
 
     @EqualsAndHashCode.Exclude
-    @Schema(description = "Quién actualizó el ejercicio")
+    @Schema(description = "Who updated the exercise")
     private String updatedBy;
 
     public static ExerciseResponse fromExercise(Exercise exercise) {
