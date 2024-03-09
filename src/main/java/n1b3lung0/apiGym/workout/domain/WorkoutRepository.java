@@ -7,4 +7,6 @@ public interface WorkoutRepository {
 
     Optional<Workout> findById(UUID id);
     Workout save(Workout workout);
+
+    void deleteById(UUID id);
 }
