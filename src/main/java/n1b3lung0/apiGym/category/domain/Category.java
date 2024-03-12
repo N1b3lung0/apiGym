@@ -23,38 +23,29 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Data
-@Builder
-@RequiredArgsConstructor
-@NoArgsConstructor(force = true)
-@Table(name = "categories")
+@Entity @Table(name = "categories")
+@Data @Builder @RequiredArgsConstructor @NoArgsConstructor(force = true)
 public final class Category implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
 
-    @With
-    @Id @GeneratedValue
+    @With @Id @GeneratedValue
     private final UUID id;
 
-    @With
-    @Column(name = "name", nullable = false, unique = true)
+    @With @Column(name = "name", nullable = false, unique = true)
     private final String name;
 
     @ManyToMany(mappedBy = "categories")
     private final Set<Exercise> exercises;
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted")
+    @With(AccessLevel.PRIVATE) @Column(name = "deleted")
     private final boolean deleted;
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted_at")
+    @With(AccessLevel.PRIVATE) @Column(name = "deleted_at")
     private final ZonedDateTime deletedAt;
 
-    @With(AccessLevel.PRIVATE)
-    @Column(name = "deleted_by")
+    @With(AccessLevel.PRIVATE) @Column(name = "deleted_by")
     private final String deletedBy;
 
     @Embedded
