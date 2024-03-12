@@ -39,4 +39,7 @@ public final class ExceptionConstants {
 
     // WORKOUT
     public static final String WORKOUT_NOT_FOUND = "A workout with ID '%s' could not be found";
+
+    // EXERCISE_SERIES
+    public static final String EXERCISE_SERIES_NOT_FOUND = "An exerciseSeries with ID '%s' could not be found";
 }
