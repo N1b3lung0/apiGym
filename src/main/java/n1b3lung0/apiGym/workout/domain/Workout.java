@@ -41,7 +41,7 @@ public final class Workout implements Serializable {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "workout")
+    @With @OneToMany(mappedBy = "workout")
     private final Set<ExerciseSeries> exerciseSeries;
 
     //@ManyToOne
