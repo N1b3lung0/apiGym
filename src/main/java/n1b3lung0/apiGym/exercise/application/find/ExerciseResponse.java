@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Schema(description = "Exercise response")
 public class ExerciseResponse {
 
-    @Schema(description = "Exercise UUID")
+    @Schema(description = "Exercise unique identifier")
     private String id;
 
     @Schema(description = "Exercise name")
