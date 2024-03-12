@@ -9,16 +9,13 @@ import org.springframework.data.jpa.domain.Specification;
 @UtilityClass
 public final class ExerciseSpecification {
     public static Specification<Exercise> byCriteria(ExerciseSearchCriteria criteria) {
-
         Specification<Exercise> spec = empty();
-
         String query = criteria.getQuery();
         if (StringUtils.isNotBlank(query)) {
             Specification<Exercise> byName = byFieldValueLike("name", query);
             Specification<Exercise> byDescription = byFieldValueLike("description", query);
             spec = spec.and(byName.or(byDescription));
         }
-
         return spec.and(active());
     }
 

@@ -92,7 +92,6 @@ public class ExerciseUpdater {
             exercise = repository.save(exercise);
             log.debug(String.format(LogConstants.EXERCISE_UPDATED, exercise));
         }
-
         return exercise;
     }
 

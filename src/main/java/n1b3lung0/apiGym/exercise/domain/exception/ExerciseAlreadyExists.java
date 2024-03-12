@@ -9,7 +9,6 @@ import java.io.Serial;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public final class ExerciseAlreadyExists extends AlreadyExists {
-
     @Serial
     private static final long serialVersionUID = -1L;
 

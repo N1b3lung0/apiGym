@@ -16,9 +16,7 @@ import n1b3lung0.apiGym.common.domain.vo.Video;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Schema(description = "Exercise create request")
 public class ExerciseCreateRequest {
 

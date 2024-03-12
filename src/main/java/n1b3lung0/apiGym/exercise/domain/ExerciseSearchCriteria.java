@@ -18,7 +18,6 @@ public final class ExerciseSearchCriteria extends Criteria implements Serializab
 
     @Serial
     private static final long serialVersionUID = -1L;
-
     private final String query;
 
     public ExerciseSearchCriteria(Pagination pagination, Sorting sorting) {

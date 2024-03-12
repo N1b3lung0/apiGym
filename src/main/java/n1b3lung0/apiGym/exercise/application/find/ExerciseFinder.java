@@ -26,9 +26,7 @@ public class ExerciseFinder {
 
     @Transactional(readOnly = true)
     public PageResponse<ExerciseResponse> find(ExerciseFindRequest request) {
-
         Page<Exercise> page = repository.find(request.toCriteria());
-
         return new PageResponse<>(
                 page,
                 page.getContent().stream()

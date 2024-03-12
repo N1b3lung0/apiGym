@@ -26,7 +26,6 @@ public class ExerciseCreator {
 
     @Transactional
     public Exercise create(ExerciseCreateRequest request) {
-
         String name = request.getName();
         if (repository.findByName(name).isPresent()) {
             throw new ExerciseAlreadyExists(name);
@@ -44,9 +43,7 @@ public class ExerciseCreator {
                 ? addCategories(exercise, request.getCategoryIds())
                 : exercise;
         Exercise created = repository.save(withCategories);
-
         log.debug(String.format(LogConstants.EXERCISE_CREATED, created));
-
         return created;
     }
 

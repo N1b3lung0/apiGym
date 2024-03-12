@@ -31,12 +31,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Data
-@Builder
-@RequiredArgsConstructor
-@NoArgsConstructor(force = true)
-@Table(name = "exercises")
+@Entity @Table(name = "exercises")
+@Data @Builder @RequiredArgsConstructor @NoArgsConstructor(force = true)
 public final class Exercise implements Serializable {
 
     @Serial

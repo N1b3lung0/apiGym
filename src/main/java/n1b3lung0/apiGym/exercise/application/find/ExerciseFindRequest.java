@@ -10,9 +10,7 @@ import n1b3lung0.apiGym.common.domain.criteria.Sorting;
 import n1b3lung0.apiGym.exercise.domain.ExerciseSearchCriteria;
 import org.apache.commons.lang3.StringUtils;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Schema(description = "Solicitud de búsqueda de ejercicios")
 public class ExerciseFindRequest {
 

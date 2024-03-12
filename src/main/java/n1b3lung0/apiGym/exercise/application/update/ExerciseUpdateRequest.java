@@ -14,9 +14,7 @@ import n1b3lung0.apiGym.common.domain.vo.Video;
 
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Schema(description = "Actualización de un ejercicio")
 public class ExerciseUpdateRequest {
 

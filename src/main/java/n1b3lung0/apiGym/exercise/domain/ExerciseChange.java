@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 
-@Data
-@Builder
-@RequiredArgsConstructor
-@NoArgsConstructor(force = true)
+@Data @Builder @RequiredArgsConstructor @NoArgsConstructor(force = true)
 public final class ExerciseChange implements Serializable {
 
     @Serial
