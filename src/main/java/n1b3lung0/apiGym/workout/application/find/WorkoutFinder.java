@@ -10,6 +10,8 @@ import n1b3lung0.apiGym.workout.domain.exception.WorkoutNotFound;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class WorkoutFinder {
@@ -24,6 +26,12 @@ public class WorkoutFinder {
 
     @Transactional(readOnly = true)
     public PageResponse<WorkoutResponse> find(WorkoutFindRequest request) {
-        Page<Workout> page = repository.find(request.)
+        Page<Workout> page = repository.find(request.toCriteria());
+        return new PageResponse<>(
+                page,
+                page.getContent().stream()
+                        .map(WorkoutResponse::fromWorkout)
+                        .collect(Collectors.toList())
+        );
     }
 }
