@@ -42,7 +42,8 @@ public final class ExerciseSeries implements Serializable {
     @JoinColumn(name = "workout_id", nullable = false)
     private final Workout workout;
 
-    @OneToOne
+    @With @OneToOne
+    @JoinColumn(name = "exercise_id", nullable = false)
     private final Exercise exercise;
 
     @ToString.Exclude
