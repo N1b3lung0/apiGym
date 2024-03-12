@@ -56,14 +56,14 @@ public class ExerciseSeriesController extends BaseRestController {
     @GetMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = FIND_BY_ID, description = FIND_BY_ID)
     public ResponseEntity<ExerciseSeriesResponse> findById(@PathVariable String id) {
-        return ResponseEntity.ok().build(); // TODO; ResponseEntity.ok(ExerciseSeriesResponse.fromExerciseSeries(finder.findById(id)));
+        return ResponseEntity.ok(ExerciseSeriesResponse.fromExerciseSeries(finder.findById(id)));
     }
 
     @OkRes @SecurityRes
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = FIND_BY_CRITERIA, description = FIND_BY_CRITERIA)
     public ResponseEntity<PageResponse<ExerciseSeriesResponse>> findByCriteria(@Valid ExerciseSeriesFindRequest request) {
-        return ResponseEntity.ok().build(); // TODO: ResponseEntity.ok(finder.find(request));
+        return ResponseEntity.ok(finder.find(request));
     }
 
     @CreatedRes @SecurityRes

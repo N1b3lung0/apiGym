@@ -25,7 +25,7 @@ import n1b3lung0.apiGym.workout.domain.Workout;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity @Table(name = "exercise_series")
@@ -49,7 +49,7 @@ public final class ExerciseSeries implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "exerciseSeries")
-    private final List<Series> series;
+    private final Set<Series> series;
 
     @With @Column(name = "weight")
     private final Float weight;
@@ -69,7 +69,7 @@ public final class ExerciseSeries implements Serializable {
     public static ExerciseSeries create(
             Workout workout,
             Exercise exercise,
-            List<Series> series,
+            Set<Series> series,
             Float weight,
             ZonedDateTime startSeries,
             ZonedDateTime endSeries,
