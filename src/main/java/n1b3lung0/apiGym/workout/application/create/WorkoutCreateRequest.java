@@ -8,7 +8,8 @@ import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 import n1b3lung0.apiGym.workout.domain.Workout;
 
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,7 @@ import java.util.List;
 public final class WorkoutCreateRequest {
 
     @Schema(description = "List of exercises with their series")
-    private List<ExerciseSeries> exerciseSeries;
+    private Set<String> exerciseSeriesIds;
 
     @Schema(description = "Workout Start Time")
     private ZonedDateTime startWorkout;
@@ -26,12 +27,10 @@ public final class WorkoutCreateRequest {
     private ZonedDateTime endWorkout;
 
     public Workout toWorkout(
-            List<ExerciseSeries> exerciseSeries,
             ZonedDateTime startWorkout,
             ZonedDateTime endWorkout
     ) {
         return Workout.create(
-                exerciseSeries,
                 startWorkout,
                 endWorkout
         );
@@ -39,7 +38,9 @@ public final class WorkoutCreateRequest {
 
     public static WorkoutCreateRequest fromWorkout(Workout workout) {
         return new WorkoutCreateRequest(
-                workout.getExerciseSeries(),
+                workout.getExerciseSeries().stream()
+                        .map(exerciseSeries -> exerciseSeries.getId().toString())
+                        .collect(Collectors.toSet()),
                 workout.getStartWorkout(),
                 workout.getEndWorkout()
         );

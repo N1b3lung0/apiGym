@@ -19,7 +19,8 @@ import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -36,8 +37,9 @@ public final class Workout implements Serializable {
     @With @Id @GeneratedValue
     private final UUID id;
 
+    @With
     @OneToMany(mappedBy = "workout")
-    private final List<ExerciseSeries> exerciseSeries;
+    private final Set<ExerciseSeries> exerciseSeries;
 
     //@ManyToOne
     //private final Trainee trainee; @OneToMany(mappedBy = "trainee")
@@ -52,13 +54,12 @@ public final class Workout implements Serializable {
     private final AuditFields auditFields;
 
     public static Workout create(
-            List<ExerciseSeries> exerciseSeries,
             ZonedDateTime startWorkout,
             ZonedDateTime endWorkout
     ) {
         return new Workout(
                 null,
-                exerciseSeries,
+                new HashSet<>(),
                 startWorkout,
                 endWorkout,
                 new AuditFields()

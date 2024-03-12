@@ -62,7 +62,7 @@ public class WorkoutController extends BaseRestController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = FIND_BY_CRITERIA, description = FIND_BY_CRITERIA)
     public ResponseEntity<PageResponse<WorkoutResponse>> findByCriteria(@Valid WorkoutFindRequest request) {
-        return ResponseEntity.ok().build(); // TODO: ResponseEntity.ok(finder.find(request));
+        return ResponseEntity.ok(finder.find(request));
     }
 
     @CreatedRes @SecurityRes
