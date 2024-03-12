@@ -11,22 +11,22 @@ import n1b3lung0.apiGym.exercise.domain.ExerciseSearchCriteria;
 import org.apache.commons.lang3.StringUtils;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-@Schema(description = "Solicitud de búsqueda de ejercicios")
+@Schema(description = "Exercise find request")
 public class ExerciseFindRequest {
 
-    @Schema(description = "Término de búsqueda (en nombre y descripción)")
+    @Schema(description = "Search term (in name and description)")
     private String query;
 
-    @Schema(description = "Página de resultados (vacío desactiva paginación)")
+    @Schema(description = "Results page (empty to disable pagination)")
     private Integer page;
 
-    @Schema(description = "Número de resultados por página (vacío desactiva paginación)")
+    @Schema(description = "Page size (empty to disable pagination)")
     private Integer size;
 
-    @Schema(description = "Campo de referencia para ordenado. Por defecto, fecha de creación")
+    @Schema(description = "Sort by (createdAt by default)")
     private String sortBy;
 
-    @Schema(description = "Dirección del ordenado (ASC, DESC). Por defecto, DESC")
+    @Schema(description = "Sort direction (ASC, DESC). DESC by default")
     private SortDirection sortDirection;
 
     public ExerciseSearchCriteria toCriteria() {
