@@ -10,8 +10,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.With;
 import n1b3lung0.apiGym.common.domain.audit.AuditFields;
 import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
@@ -37,7 +39,8 @@ public final class Workout implements Serializable {
     @With @Id @GeneratedValue
     private final UUID id;
 
-    @With
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "workout")
     private final Set<ExerciseSeries> exerciseSeries;
 
