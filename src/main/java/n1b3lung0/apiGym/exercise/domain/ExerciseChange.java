@@ -13,9 +13,7 @@ public final class ExerciseChange implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1L;
-
     private final String field;
-
     private final Object value;
 
     public static ExerciseChange create(String field, Object value) {
