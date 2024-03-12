@@ -10,7 +10,7 @@ import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 import n1b3lung0.apiGym.workout.domain.Workout;
 
 import java.time.ZonedDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class WorkoutResponse {
     private String id;
 
     @Schema(description = "List of exercises with their series")
-    private List<ExerciseSeries> exerciseSeries;
+    private Set<ExerciseSeries> exerciseSeries;
 
     @Schema(description = "When the workout started")
     private ZonedDateTime startWorkout;
