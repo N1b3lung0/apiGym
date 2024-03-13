@@ -10,4 +10,5 @@ public interface ExerciseSeriesRepository {
     Page<ExerciseSeries> find(ExerciseSeriesSearchCriteria criteria);
     Optional<ExerciseSeries> findById(UUID id);
     ExerciseSeries save(ExerciseSeries exerciseSeries);
+    void deleteById(UUID id);
 }

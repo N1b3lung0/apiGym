@@ -86,7 +86,7 @@ public class ExerciseSeriesController extends BaseRestController {
     @DeleteMapping(value = ID_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = DELETE, description = DELETE)
     public ResponseEntity<Void> delete(@PathVariable String id) {
-        // TODO: deleter.delete(id);
+        deleter.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
