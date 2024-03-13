@@ -6,6 +6,7 @@ import n1b3lung0.apiGym.category.domain.Category;
 import n1b3lung0.apiGym.category.domain.CategoryRepository;
 import n1b3lung0.apiGym.category.domain.exception.CategoryNotFound;
 import n1b3lung0.apiGym.common.application.utils.log.LogConstants;
+import n1b3lung0.apiGym.common.application.utils.uuid.UUIDUtils;
 import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise.domain.ExerciseRepository;
 import n1b3lung0.apiGym.exercise.domain.exception.ExerciseAlreadyExists;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,7 +49,7 @@ public class ExerciseCreator {
 
     private Exercise addCategories(Exercise exercise, Set<String> categoryIds) {
         Set<Category> categories = categoryIds.stream()
-                .map(id -> categoryRepository.findByIdAndDeletedFalse(UUID.fromString(id))
+                .map(id -> categoryRepository.findByIdAndDeletedFalse(UUIDUtils.fromString(id))
                         .orElseThrow(() -> new CategoryNotFound(id)))
                 .collect(Collectors.toSet());
         return exercise.withCategories(categories);
