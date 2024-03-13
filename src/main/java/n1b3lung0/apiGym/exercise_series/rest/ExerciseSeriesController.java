@@ -70,10 +70,9 @@ public class ExerciseSeriesController extends BaseRestController {
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = CREATE, description = CREATE)
     public ResponseEntity<Void> create(@RequestBody @Valid ExerciseSeriesCreateRequest request) throws URISyntaxException {
-        // TODO: ExerciseSeries saved = creator.create(request);
-        // URI location = UriComponentsBuilder.fromPath("/exercise-series/{id}").buildAndExpand(saved.getId()).toUri();
-        // return ResponseEntity.created(location).build();
-        return ResponseEntity.created(new URI("URI")).build();
+        ExerciseSeries saved = creator.create(request);
+        URI location = UriComponentsBuilder.fromPath("/exercise-series/{id}").buildAndExpand(saved.getId()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @OkRes @NotFoundRes @SecurityRes

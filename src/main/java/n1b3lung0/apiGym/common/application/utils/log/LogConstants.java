@@ -24,4 +24,9 @@ public final class LogConstants {
     public static final String WORKOUT_CREATED = "New workout created: %s";
     public static final String WORKOUT_UPDATED = "Workout updated: %s";
     public static final String WORKOUT_DELETED = "Workout deleted: %s";
+
+    // EXERCISE_SERIES
+    public static final String EXERCISE_SERIES_CREATED = "New exercise series created: %s";
+    public static final String EXERCISE_SERIES_UPDATED = "Exercise series updated: %s";
+    public static final String EXERCISE_SERIES_DELETED = "Exercise series deleted: %s";
 }
