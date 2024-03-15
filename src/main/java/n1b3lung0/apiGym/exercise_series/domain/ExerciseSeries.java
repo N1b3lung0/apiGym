@@ -39,12 +39,12 @@ public final class ExerciseSeries implements Serializable {
     @With @Id @GeneratedValue
     private final UUID id;
 
-    @With @ManyToOne
-    @JoinColumn(name = "workout_id", nullable = false)
+    @With @ToString.Exclude @EqualsAndHashCode.Exclude
+    @ManyToOne @JoinColumn(name = "workout_id", nullable = false)
     private final Workout workout;
 
-    @With @OneToOne
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @With @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToOne @JoinColumn(name = "exercise_id", nullable = false)
     private final Exercise exercise;
 
     @ToString.Exclude
@@ -68,19 +68,19 @@ public final class ExerciseSeries implements Serializable {
     private final AuditFields auditFields;
 
     public static ExerciseSeries create(
+            Workout workout,
+            Exercise exercise,
             Float weight,
-            ZonedDateTime startSeries,
-            ZonedDateTime endSeries,
             RestTime restTime
     ) {
         return new ExerciseSeries(
                 null,
-                null,
-                null,
+                workout,
+                exercise,
                 new HashSet<>(),
                 weight,
-                startSeries,
-                endSeries,
+                null,
+                null,
                 restTime,
                 new AuditFields()
         );

@@ -6,16 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import n1b3lung0.apiGym.exercise.domain.Exercise;
+import n1b3lung0.apiGym.exercise.application.find.ExerciseResponse;
 import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 import n1b3lung0.apiGym.exercise_series.domain.RestTime;
-import n1b3lung0.apiGym.series.domain.Series;
-import n1b3lung0.apiGym.workout.domain.Workout;
+import n1b3lung0.apiGym.series.application.find.SeriesResponse;
+import n1b3lung0.apiGym.workout.application.find.WorkoutResponse;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(description = "Exercise series response")
 public class ExerciseSeriesResponse {
@@ -23,14 +26,17 @@ public class ExerciseSeriesResponse {
     @Schema(description = "Exercise series unique identifier")
     private String id;
 
+    @EqualsAndHashCode.Exclude
     @Schema(description = "Workout which this exercise series is linked")
-    private Workout workout;
+    private WorkoutResponse workout;
 
+    @EqualsAndHashCode.Exclude
     @Schema(description = "Exercise which this exercise series is linked")
-    private Exercise exercise;
+    private ExerciseResponse exercise;
 
+    @EqualsAndHashCode.Exclude
     @Schema(description = "Series linked to this Exercise series")
-    private Set<Series> series;
+    private Set<SeriesResponse> series;
 
     @Schema(description = "Weight lifted in this exercise series")
     private Float weight;
@@ -63,9 +69,17 @@ public class ExerciseSeriesResponse {
     public static ExerciseSeriesResponse fromExerciseSeries(ExerciseSeries exerciseSeries) {
         return exerciseSeries != null ? new ExerciseSeriesResponse(
                 String.valueOf(exerciseSeries.getId()),
-                exerciseSeries.getWorkout(),
-                exerciseSeries.getExercise(),
-                exerciseSeries.getSeries(),
+                exerciseSeries.getWorkout() != null
+                        ? WorkoutResponse.fromWorkout(exerciseSeries.getWorkout())
+                        : null,
+                exerciseSeries.getExercise() != null
+                        ? ExerciseResponse.fromExercise(exerciseSeries.getExercise())
+                        : null,
+                exerciseSeries.getSeries() != null
+                        ? exerciseSeries.getSeries().stream()
+                        .map(SeriesResponse::fromSeries)
+                        .collect(Collectors.toSet())
+                        : null,
                 exerciseSeries.getWeight(),
                 exerciseSeries.getStartSeries(),
                 exerciseSeries.getEndSeries(),

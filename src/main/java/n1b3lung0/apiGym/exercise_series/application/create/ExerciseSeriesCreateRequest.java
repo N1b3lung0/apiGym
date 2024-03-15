@@ -4,8 +4,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import n1b3lung0.apiGym.exercise.domain.Exercise;
 import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 import n1b3lung0.apiGym.exercise_series.domain.RestTime;
+import n1b3lung0.apiGym.workout.domain.Workout;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
@@ -37,15 +39,15 @@ public class ExerciseSeriesCreateRequest {
     private RestTime restTime;
 
     public ExerciseSeries toExerciseSeries(
+            Workout workout,
+            Exercise exercise,
             Float weight,
-            ZonedDateTime startSeries,
-            ZonedDateTime endSeries,
             RestTime restTime
     ) {
         return ExerciseSeries.create(
+                workout,
+                exercise,
                 weight,
-                startSeries,
-                endSeries,
                 restTime
         );
     }
