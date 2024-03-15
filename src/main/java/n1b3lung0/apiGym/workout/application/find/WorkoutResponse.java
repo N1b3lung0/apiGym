@@ -6,11 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
+import n1b3lung0.apiGym.exercise_series.application.find.ExerciseSeriesResponse;
 import n1b3lung0.apiGym.workout.domain.Workout;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -22,8 +23,9 @@ public class WorkoutResponse {
     @Schema(description = "Workout unique identifier")
     private String id;
 
+    @EqualsAndHashCode.Exclude
     @Schema(description = "List of exercises with their series")
-    private Set<ExerciseSeries> exerciseSeries;
+    private Set<ExerciseSeriesResponse> exerciseSeries;
 
     @Schema(description = "When the workout started")
     private ZonedDateTime startWorkout;
@@ -50,7 +52,11 @@ public class WorkoutResponse {
     public static WorkoutResponse fromWorkout(Workout workout) {
         return workout != null ? new WorkoutResponse(
                 String.valueOf(workout.getId()),
-                workout.getExerciseSeries(),
+                workout.getExerciseSeries() != null
+                        ? workout.getExerciseSeries().stream()
+                        .map(ExerciseSeriesResponse::fromExerciseSeries)
+                        .collect(Collectors.toSet())
+                        : null,
                 workout.getStartWorkout(),
                 workout.getEndWorkout(),
                 workout.getAuditFields().getCreatedAt(),

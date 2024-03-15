@@ -39,9 +39,8 @@ public final class Workout implements Serializable {
     @With @Id @GeneratedValue
     private final UUID id;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @With @OneToMany(mappedBy = "workout")
+    @With @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "workout")
     private final Set<ExerciseSeries> exerciseSeries;
 
     //@ManyToOne

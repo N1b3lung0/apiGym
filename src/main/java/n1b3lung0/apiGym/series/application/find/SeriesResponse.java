@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
+import n1b3lung0.apiGym.exercise_series.application.find.ExerciseSeriesResponse;
 import n1b3lung0.apiGym.series.domain.Series;
 
 import java.time.ZonedDateTime;
@@ -21,8 +21,9 @@ public class SeriesResponse {
     @Schema(description = "Identificador único de la serie")
     private String id;
 
+    @EqualsAndHashCode.Exclude
     @Schema(description = "Identificador único del ejercicio")
-    private ExerciseSeries exerciseSeries;
+    private ExerciseSeriesResponse exerciseSeries;
 
     @Schema(description = "Serie número X")
     private Integer serialNumber;
@@ -52,7 +53,7 @@ public class SeriesResponse {
     public static SeriesResponse fromSeries(Series series) {
         return series != null ? new SeriesResponse(
                 String.valueOf(series.getId()),
-                series.getExerciseSeries(),
+                series.getExerciseSeries() != null ? ExerciseSeriesResponse.fromExerciseSeries(series.getExerciseSeries()) : null,
                 series.getSerialNumber(),
                 series.getRepetitionsToDo(),
                 series.getRepetitionsDone(),
