@@ -25,10 +25,7 @@ public class WorkoutCreator {
 
     @Transactional
     public Workout create(WorkoutCreateRequest request) {
-        Workout workout = repository.save(request.toWorkout(
-                request.getStartWorkout(),
-                request.getEndWorkout()
-        ));
+        Workout workout = repository.save(request.toWorkout());
         Workout withExerciseSeries = (request.getExerciseSeriesIds() != null)
                 ? addExerciseSeries(workout, request.getExerciseSeriesIds())
                 : workout;

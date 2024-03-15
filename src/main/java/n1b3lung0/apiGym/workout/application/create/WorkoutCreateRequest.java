@@ -26,14 +26,8 @@ public final class WorkoutCreateRequest {
     @Schema(description = "Workout End Time")
     private ZonedDateTime endWorkout;
 
-    public Workout toWorkout(
-            ZonedDateTime startWorkout,
-            ZonedDateTime endWorkout
-    ) {
-        return Workout.create(
-                startWorkout,
-                endWorkout
-        );
+    public Workout toWorkout() {
+        return Workout.create();
     }
 
     public static WorkoutCreateRequest fromWorkout(Workout workout) {

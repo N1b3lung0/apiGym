@@ -56,15 +56,12 @@ public final class Workout implements Serializable {
     @Embedded
     private final AuditFields auditFields;
 
-    public static Workout create(
-            ZonedDateTime startWorkout,
-            ZonedDateTime endWorkout
-    ) {
+    public static Workout create() {
         return new Workout(
                 null,
                 new HashSet<>(),
-                startWorkout,
-                endWorkout,
+                null,
+                null,
                 new AuditFields()
         );
     }
