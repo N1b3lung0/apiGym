@@ -10,7 +10,7 @@ import n1b3lung0.apiGym.exercise_series.application.find.ExerciseSeriesResponse;
 import n1b3lung0.apiGym.workout.domain.Workout;
 
 import java.time.ZonedDateTime;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
@@ -52,11 +52,28 @@ public class WorkoutResponse {
     public static WorkoutResponse fromWorkout(Workout workout) {
         return workout != null ? new WorkoutResponse(
                 String.valueOf(workout.getId()),
-                workout.getExerciseSeries() != null
-                        ? workout.getExerciseSeries().stream()
-                        .map(ExerciseSeriesResponse::fromExerciseSeries)
-                        .collect(Collectors.toSet())
-                        : null,
+                Optional.ofNullable(workout.getExerciseSeries())
+                        .map(set -> set.stream().map(ExerciseSeriesResponse::fromExerciseSeries).collect(Collectors.toSet()))
+//                        .filter(Objects::nonNull)
+                        .orElse(new HashSet<>()),
+//                workout.getExerciseSeries() != null
+//                        ? workout.getExerciseSeries().stream()
+//                        .map(ExerciseSeriesResponse::fromExerciseSeries)
+//                        .collect(Collectors.toSet())
+//                        : null,
+                workout.getStartWorkout(),
+                workout.getEndWorkout(),
+                workout.getAuditFields().getCreatedAt(),
+                workout.getAuditFields().getCreatedBy(),
+                workout.getAuditFields().getUpdatedAt(),
+                workout.getAuditFields().getUpdatedBy()
+        ) : new WorkoutResponse();
+    }
+
+    public static WorkoutResponse fromWorkoutForExerciseSeries(Workout workout) {
+        return workout != null ? new WorkoutResponse(
+                String.valueOf(workout.getId()),
+                null,
                 workout.getStartWorkout(),
                 workout.getEndWorkout(),
                 workout.getAuditFields().getCreatedAt(),

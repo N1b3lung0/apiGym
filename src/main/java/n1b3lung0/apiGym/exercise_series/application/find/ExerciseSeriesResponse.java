@@ -11,8 +11,10 @@ import n1b3lung0.apiGym.exercise_series.domain.ExerciseSeries;
 import n1b3lung0.apiGym.exercise_series.domain.RestTime;
 import n1b3lung0.apiGym.series.application.find.SeriesResponse;
 import n1b3lung0.apiGym.workout.application.find.WorkoutResponse;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -69,8 +71,9 @@ public class ExerciseSeriesResponse {
     public static ExerciseSeriesResponse fromExerciseSeries(ExerciseSeries exerciseSeries) {
         return exerciseSeries != null ? new ExerciseSeriesResponse(
                 String.valueOf(exerciseSeries.getId()),
+//                Optional.ofNullable(exerciseSeries.getWorkout()).map(workout -> String.valueOf(workout.getId())).orElse(StringUtils.EMPTY),
                 exerciseSeries.getWorkout() != null
-                        ? WorkoutResponse.fromWorkout(exerciseSeries.getWorkout())
+                        ? WorkoutResponse.fromWorkoutForExerciseSeries(exerciseSeries.getWorkout())
                         : null,
                 exerciseSeries.getExercise() != null
                         ? ExerciseResponse.fromExercise(exerciseSeries.getExercise())

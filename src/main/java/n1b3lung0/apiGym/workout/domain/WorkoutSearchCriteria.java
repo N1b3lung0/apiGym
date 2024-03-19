@@ -10,6 +10,7 @@ import n1b3lung0.apiGym.common.domain.criteria.Sorting;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 
 @Data
 @ToString(callSuper = true)
@@ -18,6 +19,10 @@ public final class WorkoutSearchCriteria extends Criteria implements Serializabl
     @Serial
     private static final long serialVersionUID = -1L;
     private final String query;
+
+    private ZonedDateTime start;
+
+    private ZonedDateTime end;
 
     public WorkoutSearchCriteria(Pagination pagination, Sorting sorting) {
         super(pagination, sorting);
